@@ -1,0 +1,42 @@
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#header {
+    width: 100%;
+    height: 20px;
+}
+
+#main {
+    width: 80%;
+    height: 800px;
+    float: left;
+}
+
+#right {
+    position: relative;
+    top: 0px;
+    width: 20%;
+    height: 800px;
+    float: right;
+}
+
+#footer {
+    top: 0px;
+    width: 100%;
+    height: 60px;
+    text-align:center;
+    float: left;
+}
+
+#article-list {
+    padding-top:20px;
+    margin-left:20px;
+    background-color: #00FF00;
+    width: 100%;
+}

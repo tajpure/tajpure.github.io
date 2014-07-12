@@ -1,34 +1,1247 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>tajpure</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/homepage.css' />
-  </head>
-  <body>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgUBWV9XGwcBVlZWDwc="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e){function n(t,e,n){n||(n={});for(var r=o[t],a=r&&r.length||0,s=n[i]||(n[i]={}),u=0;a>u;u++)r[u].apply(s,e);return s}function r(t,e){var n=o[t]||(o[t]=[]);n.push(e)}var o={},i="nr@context";e.exports={on:r,emit:n}},{}],2:[function(t){function e(t,e,n,i,s){return u?u-=1:r("err",[s||new UncaughtException(t,e,n)]),"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t(5),a=window.onerror,s=!1,u=0;t("loader").features.push("err"),window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(d){"stack"in d&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(4),s=!0)}i.on("fn-start",function(){s&&(u+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&u>0&&(u-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:5,2:4,3:3,4:6,5:1,6:14,handle:"D5DuLP",loader:"G9z0Bl"}],3:[function(t){function e(t){r.inPlace(t,["addEventListener","removeEventListener"],"-",n)}function n(t){return t[1]}var r=t(1),o=(t(3),t(2));if(e(window),"getPrototypeOf"in Object){for(var i=document;i&&!i.hasOwnProperty("addEventListener");)i=Object.getPrototypeOf(i);i&&e(i);for(var a=XMLHttpRequest.prototype;a&&!a.hasOwnProperty("addEventListener");)a=Object.getPrototypeOf(a);a&&e(a)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&e(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=e["nr@wrapped"]?t[1]=e["nr@wrapped"]:e["nr@wrapped"]=t[1]=r(e,"fn-"):"function"==typeof e.handleEvent&&r.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:15,2:1,3:14}],4:[function(t){var e=(t(3),t(1)),n=t(2);e.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=e(t[0],"fn-")})},{1:15,2:1,3:14}],5:[function(t){function e(t){var e=t[0];"string"==typeof e&&(e=new Function(e)),t[0]=n(e,"fn-")}var n=(t(3),t(1)),r=t(2);n.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",e)},{1:15,2:1,3:14}],6:[function(t){function e(){o.inPlace(this,s,"fn-")}function n(t,e){o.inPlace(e,["onreadystatechange"],"fn-")}function r(t,e){return e}var o=t(1),i=t(2),a=window.XMLHttpRequest,s=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];window.XMLHttpRequest=function(t){var n=new a(t);try{i.emit("new-xhr",[],n),o.inPlace(n,["addEventListener","removeEventListener"],"-",function(t,e){return e}),n.addEventListener("readystatechange",e,!1)}catch(r){try{i.emit("internal-error",r)}catch(s){}}return n},window.XMLHttpRequest.prototype=a.prototype,o.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",r),i.on("send-xhr-start",n),i.on("open-xhr-start",n)},{1:15,2:1}],7:[function(t){function e(){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;u>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,d="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,f=e(d);if(f&&(r.rxSize=f),this.sameOrigin){var c=t.getResponseHeader("X-NewRelic-App-Data");c&&(n.cat=c.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}t("loader").features.push("xhr");var o=t("handle"),i=t(1),a=t(5),s=["load","error","abort","timeout"],u=s.length,d=t(2);t(3),t(4),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var d=e(o);d&&(r.txSize=d)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",e)}catch(r){}}};for(var f=0;u>f;f++)n.addEventListener(s[f],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+d(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+d(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&e()},{1:8,2:11,3:3,4:6,5:1,handle:"D5DuLP",loader:"G9z0Bl"}],8:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e){var n=r[t];return n?n.apply(this,e):(o[t]||(o[t]=[]),void o[t].push(e))}var r={},o={};e.exports=n,n.queues=o,n.handlers=r},{}],11:[function(t,e){function n(t){if(!t||"object"!=typeof t&&"function"!=typeof t)return-1;if(t===window)return 0;if(o.call(t,"__nr"))return t.__nr;try{return Object.defineProperty(t,"__nr",{value:r,writable:!0,enumerable:!1}),r}catch(e){return t.__nr=r,r}finally{r+=1}}var r=1,o=Object.prototype.hasOwnProperty;e.exports=n},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&u&&u.body){p.proto="https"===c.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=u.createElement("script");e.src=p.proto+t.agent,u.body.appendChild(e)}}function r(){"complete"===u.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,u=s.document,d="addEventListener",f="attachEvent",c=(""+location).split("?")[0],p=e.exports={offset:i(),origin:c,features:[]};u[d]?(u[d]("DOMContentLoaded",o,!1),s[d]("load",n,!1)):(u[f]("onreadystatechange",r),s[f]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],14:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],15:[function(t,e){function n(t,e,r,s){function nrWrapper(){try{var n,a=u(arguments),d=this,f=r&&r(a,d)||{}}catch(c){i([c,"",[a,d,s],f])}o(e+"start",[a,d,s],f);try{return n=t.apply(d,a)}catch(p){throw o(e+"err",[a,d,p],f),p}finally{o(e+"end",[a,d,n],f)}}return a(t)?t:(e||(e=""),nrWrapper[n.flag]=!0,nrWrapper)}function r(t,e,r,o){r||(r="");var i,s,u,d="-"===r.charAt(0);for(u=0;u<e.length;u++)s=e[u],i=t[s],a(i)||(t[s]=n(i,d?s+r:r,o,s,t))}function o(t,e,n){try{s.emit(t,e,n)}catch(r){i([r,t,e,n])}}function i(t){try{s.emit("internal-error",t)}catch(e){}}function a(t){return!(t&&"function"==typeof t&&t.apply&&!t[n.flag])}var s=t(1),u=t(2);e.exports=n,n.inPlace=r,n.flag="nr@wrapper"},{1:1,2:14}]},{},["G9z0Bl",2,7]);</script>
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	
+	<title>Smart 7  &#8211;  Blog</title>
+	
+		<link rel="shortcut icon" href="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/FAV.png"  />
+		
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://demo.sacredpixel.com/wp/smart7/feed/" />
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://demo.sacredpixel.com/wp/smart7/feed/rss/" />
+	<link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="http://demo.sacredpixel.com/wp/smart7/feed/atom/" />
+	<link rel="pingback" href="http://demo.sacredpixel.com/wp/smart7/xmlrpc.php" />
+	
+	<!--[if lt IE 9]><script src="http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/assets/js/html5shiv.js"></script><![endif]-->
 
-      <div id="header">
-        <a class="header-item">About</a>
-        <a class="header-item">Archive</a>
-        <a class="header-item">Tags</a>
-      </div>
+	<!-- Theme Hook -->
+	<link rel="alternate" type="application/rss+xml" title="Smart 7 &raquo; Feed" href="http://demo.sacredpixel.com/wp/smart7/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Smart 7 &raquo; Comments Feed" href="http://demo.sacredpixel.com/wp/smart7/comments/feed/" />
+<link rel='stylesheet' id='layerslider_css-css'  href='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/LayerSlider/css/layerslider.css?ver=4.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.5.4' type='text/css' media='all' />
+<link rel='stylesheet' id='fonts-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C700&#038;ver=3.6.1' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/style.css?ver=1.0.2' type='text/css' media='all' />
+<style type='text/css'>
+﻿
+body { color:#666666; font-family:'Open Sans', sans-serif; }
 
-      <div id="main">
-        <div id="article-list">
-          <div class="article-item">
-              <a class="article-title">Who are you?</a>
-              <pre class="article-content">I'm Taj</pre>
-          </div>
+/* Text Selection */
+
+::-moz-selection { background: #00a8ff; /* Firefox */ }
+::selection { background: #00a8ff; /* Safari */ }
+
+
+/* Anchor */
+
+a{ color:#00a8ff; }
+a:hover{ color:#333333; }
+
+
+/* Block quote */
+
+blockquote{ color:#00a8ff; }
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6{ font-family:'Open Sans', sans-serif; }
+
+
+/* Navigation */
+
+header .navigation { font-family:'Open Sans', sans-serif; }
+
+
+.button2,
+form input[type="submit"]{
+    border:1px solid #00a8ff;
+    color:#00a8ff;
+}
+
+form input[type="submit"]:hover,
+form input[type="submit"]:active,
+.button2:hover{
+    background-color:#00a8ff;
+}
+
+.button1{
+    background-color:#00a8ff;
+}
+
+.color-accent-background
+{
+    background-color:#00a8ff;
+}
+
+.color-accent-foreground
+{
+    color:#00a8ff;
+}
+
+.search-form form{
+    border:1px solid #00a8ff;
+}
+
+.search-form input[type="submit"]{
+    background-color:#00a8ff;
+}
+
+.search-form input[type="submit"]:hover{
+    background-color:#4dc2ff;
+}
+
+header .navigation-button:hover{
+    color: #00a8ff;
+}
+
+header .navigation > ul > li:hover > a{
+    border:1px solid #00a8ff;
+    color:#00a8ff;
+}
+
+header .navigation > ul > li.current-menu-item > a,
+header .navigation > ul > li.current-menu-ancestor > a{
+    background-color: #00a8ff;
+    color:#FFF;
+}
+
+header .navigation li li:hover{
+    background-color: #00a8ff;
+}
+
+header #menu-item-search > a{
+    border-left: 1px solid #00a8ff;
+}
+
+header #menu-item-search:hover a{
+    color:#00a8ff;
+}
+
+#page-title{
+    background-color:#00a8ff;
+}
+
+.widget-area .widget-title{
+    color:#00a8ff;
+}
+
+.widget-area a:hover{
+    color:#00a8ff;
+}
+
+.widget-area .search-form input[type="submit"]{
+    background-color:#00a8ff;
+}
+
+.tagcloud a:hover{
+    color:#00a8ff;
+}
+
+.widget_bj_testimonials .name{
+    color: #00a8ff;
+}
+
+#footer-bottom a:hover
+{
+    color:#00a8ff;
+}
+
+footer .social-icons span:hover
+{
+    color: #00a8ff;
+}
+
+footer .widget-area hr{
+    background-color: #00a8ff;
+}
+
+footer .widget_tag_cloud a:hover{
+    background-color: #00a8ff;
+    border:1px solid #00a8ff;
+}
+
+.footer-widgets .wpcf7 input[type="submit"]:hover{
+    background-color: #00a8ff;
+}
+
+.iconbox.iconbox-hex:hover .icon{
+    background-color: #00a8ff;
+}
+
+.iconbox.iconbox-circle:hover .icon{
+    border:1px solid #00a8ff;
+}
+
+.iconbox .glyph{
+    color: #00a8ff;
+}
+
+.iconbox.iconbox-circle:hover .glyph,
+.iconbox.iconbox-hex:hover .glyph{
+    color:#00a8ff;
+}
+
+.iconbox:hover .title{
+    color:#00a8ff;
+}
+
+.iconbox .more-link a:hover{
+    color: #00a8ff;
+}
+
+.portfolio-list .item-meta a{
+    color: #00a8ff;
+}
+
+.portfolio-style1 .item-image-overlay
+{
+    background-color: #00a8ff;
+	background-color: rgba(0, 168, 255, .7);	
+}
+
+.portfolio-style1 .item-icon:hover{
+    color: #00a8ff;
+}
+
+.portfolio-style2 .item-image-overlay
+{
+    background-color: #00a8ff;
+    background-color: rgba(0, 168, 255, .3);
+}
+
+.portfolio-style2 .item-icon:hover
+{
+    background: #00a8ff;
+}
+
+.portfolio-list .filter .current
+{
+    border-top:1px solid #00a8ff;
+    border-bottom:1px solid #00a8ff;
+    border-left:1px solid #00a8ff;
+    background-color: #00a8ff;
+}
+
+.portfolio-list .filter .current:last-child
+{
+    border-right:1px solid #00a8ff;
+}
+
+.team-member .name a{
+    color:#00a8ff;
+}
+
+.team-member .image-overlay-wrap
+{
+    background-color: #00a8ff; 
+	background-color: rgba(0, 168, 255, .8);	
+}
+
+.team-member .icons a:hover{
+    color:#00a8ff;
+}
+
+.progressbar .progress{
+	background-color:#cceeff; 
+}
+
+.progressbar .progress-inner{
+    background-color: #00a8ff;
+}
+
+.accordion .header:hover .title,
+.toggle .header:hover .title,
+.accordion .header:hover .tab-button,
+.toggle .header:hover .tab-button{
+    color:#00a8ff;
+}
+
+.post-slider .slider-nav{
+    border:1px solid #00a8ff;
+}
+
+.post-slider .nav-separator{
+    background-color: #00a8ff;
+}
+
+.post-slider .nav-prev,
+.post-slider .nav-next{
+    background-color:#00a8ff;
+}
+
+.post-slider .format-quote .item-media{
+    background-color: #00a8ff;
+}
+
+.post-slider .media-date{
+    background-color: #00a8ff;
+}
+
+.horizontal-tab .titles .current{
+    color:#00a8ff;
+}
+
+.horizontal-tab .titles .current .pointer
+{
+    border-color: #00a8ff;
+}
+
+.tabs .head .current,
+.tabs .head li:hover{
+    color:#00a8ff;
+}
+
+.tabs .head .current{
+    border-bottom: 2px solid #00a8ff;
+}
+
+.portfolio-related .overlay hr{
+    background-color: #00a8ff;
+}
+
+.archive .comments-link,
+.blog .comments-link{
+    color: #00a8ff;
+    background-color: #00a8ff;
+}
+
+.post.format-quote blockquote{
+    color: #00a8ff;
+    border:1px solid #00a8ff;
+}
+
+.post .post-title{
+    color: #00a8ff;
+}
+
+.post-pagination a:hover,
+.post-pagination .this-page
+{
+    background-color: #00a8ff;
+    border-color: #00a8ff;
+}
+
+.comments-list .comment-reply-link:hover
+{ 
+    background-color: #00a8ff;
+}
+
+#commentform input[type="submit"]{
+    
+    border:1px solid #00a8ff;
+    color:#00a8ff;
+}
+
+#commentform input[type="submit"]:hover{
+    background-color:#00a8ff;
+}
+
+.search-item .count{    
+    color: #00a8ff;
+}
+
+/*==== Style Overrides ====*/
+
+.navigation-mobile .sub-menu li.current-menu-item a {
+ color:#fff;
+}
+</style>
+<link rel='stylesheet' id='responsive-style-css'  href='http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/assets/css/responsive.css?ver=1.0.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/LayerSlider/js/layerslider.kreaturamedia.jquery.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/LayerSlider/js/jquery-easing-1.3.js?ver=1.3.0'></script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/LayerSlider/js/jquerytransit.js?ver=0.9.9'></script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/LayerSlider/js/layerslider.transitions.js?ver=4.6.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://demo.sacredpixel.com/wp/smart7/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://demo.sacredpixel.com/wp/smart7/wp-includes/wlwmanifest.xml" /> 
+
+	<!-- Custom CSS -->
+</head>
+<body class="blog no-js">
+    <script type="text/javascript">
+        document.body.className = document.body.className.replace('no-js','js-enabled');
+    </script>
+    <nav class="navigation-mobile">
+    <span class="icon-close navigation-close"></span>
+    <ul id="menu-home" class="menu"><li id="menu-item-mobile5029" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home"><a href="http://demo.sacredpixel.com/wp/smart7">Home</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile4902" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-tech-show/">Home | Tech Show</a></li>
+	<li id="menu-item-mobile4904" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-main/">Home | Landing Style</a></li>
+	<li id="menu-item-mobile4907" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-clean-minimal/">Home | Clean &#038; Minimal</a></li>
+	<li id="menu-item-mobile6138" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/">Home | Smart</a></li>
+	<li id="menu-item-mobile4903" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-app-store/">Home | App Store</a></li>
+	<li id="menu-item-mobile4905" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-parallax/">Home | Parallax</a></li>
+	<li id="menu-item-mobile4923" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-fancy-night/">Home | Fancy Night</a></li>
+	<li id="menu-item-mobile4906" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-products/">Home | Products</a></li>
+	<li id="menu-item-mobile4879" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-photography/">Home | Photography</a></li>
+</ul>
+</li>
+<li id="menu-item-mobile5023" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/slider-full-page/">Slider</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile4899" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-product/">Slider | Shoping</a></li>
+	<li id="menu-item-mobile4892" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-full-page/">Slider | Full Page</a></li>
+	<li id="menu-item-mobile4897" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-3d/">Slider | 3D</a></li>
+	<li id="menu-item-mobile4927" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-carousel/">Slider | Carousel</a></li>
+	<li id="menu-item-mobile4901" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-banner/">Slider | Banner</a></li>
+	<li id="menu-item-mobile5624" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-artistic-mention/">Slider | Artistic Mention</a></li>
+	<li id="menu-item-mobile6188" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-fashion/">Slider | Fashion</a></li>
+	<li id="menu-item-mobile4896" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/sldier-showcase/">Slider | Showcase</a></li>
+	<li id="menu-item-mobile4900" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-one-page/">Slider | One Page</a></li>
+	<li id="menu-item-mobile4891" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-quote/">Slider | Quote</a></li>
+	<li id="menu-item-mobile4893" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-clear/">Slider | Clean</a></li>
+	<li id="menu-item-mobile4898" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-thumbnail/">Slider | Thumbnail</a></li>
+</ul>
+</li>
+<li id="menu-item-mobile5038" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile6139" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-artistic-mention/">Portfolio | Artistic Mention</a></li>
+	<li id="menu-item-mobile4884" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio | Masonry</a></li>
+	<li id="menu-item-mobile5039" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-12/?pnt=2074">Single Portfolio | Split</a></li>
+	<li id="menu-item-mobile5040" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-10/?pnt=2074">Single Portfolio | Wide</a></li>
+	<li id="menu-item-mobile5041" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-2-2/?pnt=2074">Single Portfolio | Wide  2</a></li>
+	<li id="menu-item-mobile5042" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/detail-3/">Single Portfolio | Slideshow</a></li>
+	<li id="menu-item-mobile5043" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-15/">Single Portfolio | Video</a></li>
+	<li id="menu-item-mobile5044" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio Masonry Grid</a>
+	<ul class="sub-menu">
+		<li id="menu-item-mobile4885" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-2-columns/">Portfolio | Masonry 2 Columns</a></li>
+		<li id="menu-item-mobile4886" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-3-columns/">Portfolio | Masonry 3 Columns</a></li>
+		<li id="menu-item-mobile4887" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-4-columns/">Portfolio | Masonry 4 Columns</a></li>
+	</ul>
+</li>
+	<li id="menu-item-mobile5045" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-4-columns">Portfolio Static Grid</a>
+	<ul class="sub-menu">
+		<li id="menu-item-mobile6135" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-2-columns/">Portfolio | Static 2 Columns</a></li>
+		<li id="menu-item-mobile4889" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-3-columns/">Portfolio | Static 3 Columns</a></li>
+		<li id="menu-item-mobile4890" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-4-columns/">Portfolio | Static 4 Columns</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-mobile5034" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/page-about-us-2/">Page</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile5426" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/about-team/">About Us 2</a></li>
+	<li id="menu-item-mobile4919" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-about-me/">About  Me</a></li>
+	<li id="menu-item-mobile4928" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-office/">Office</a></li>
+	<li id="menu-item-mobile6345" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-contact/">Contact</a></li>
+	<li id="menu-item-mobile5650" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-contact-full/">Contact Full</a></li>
+	<li id="menu-item-mobile5427" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/faq/">FAQ</a></li>
+	<li id="menu-item-mobile5424" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-testimonial/">Testimonial</a></li>
+	<li id="menu-item-mobile6112" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-parallax/">Parallax</a></li>
+	<li id="menu-item-mobile5031" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/404.php">404 Page</a></li>
+	<li id="menu-item-mobile5032" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/?s=Image">Search Result</a></li>
+	<li id="menu-item-mobile5033" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/2013/08/">Archive</a></li>
+	<li id="menu-item-mobile6344" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-full-width/">Full Width</a></li>
+	<li id="menu-item-mobile6343" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-right-sidebar-2/">Right Sidebar</a></li>
+	<li id="menu-item-mobile6342" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-left-sidebar/">Left Sidebar</a></li>
+</ul>
+</li>
+<li id="menu-item-mobile4882" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-675 current_page_item current_page_parent"><a href="http://demo.sacredpixel.com/wp/smart7/blog/">Blog</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile6080" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/slim-white/">Standard Post</a></li>
+	<li id="menu-item-mobile5025" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/swiss">Video Post</a></li>
+	<li id="menu-item-mobile5026" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/lux-aeterna/">Sound Post</a></li>
+	<li id="menu-item-mobile5027" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/sport">Gallery Post</a></li>
+	<li id="menu-item-mobile6162" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/6/">Quote Post</a></li>
+</ul>
+</li>
+<li id="menu-item-mobile5030" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-icon-boxes/">Shortcodes</a>
+<ul class="sub-menu">
+	<li id="menu-item-mobile4909" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-icon-boxes/">Shortcode &#8211; Icon Boxes</a></li>
+	<li id="menu-item-mobile4910" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-columns/">Shortcode &#8211; Columns</a></li>
+	<li id="menu-item-mobile4911" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-contact-forms/">Shortcode &#8211; Contact Forms</a></li>
+	<li id="menu-item-mobile4912" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-google-map/">Shortcode &#8211; Google Map</a></li>
+	<li id="menu-item-mobile4913" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-layer-slider/">Shortcode &#8211; Layer Slider</a></li>
+	<li id="menu-item-mobile4914" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-portfolio/">Shortcode &#8211; Portfolio</a></li>
+	<li id="menu-item-mobile4915" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-post-slider/">Shortcode &#8211; Post and Portfolio Slider</a></li>
+	<li id="menu-item-mobile4916" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-progress-bar/">Shortcode &#8211; Progress Bar</a></li>
+	<li id="menu-item-mobile4917" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-separator/">Shortcode &#8211; Separator</a></li>
+	<li id="menu-item-mobile4920" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-tab-toggle/">Shortcode &#8211; Tab &#038; Toggle</a></li>
+	<li id="menu-item-mobile4921" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-team-members/">Shortcode &#8211; Team Members</a></li>
+	<li id="menu-item-mobile4922" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-testimonial/">Shortcode &#8211; Testimonial</a></li>
+	<li id="menu-item-mobile4924" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-sidebar/">Shortcode &#8211; Sidebar</a></li>
+	<li id="menu-item-mobile4925" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-button/">Shortcode &#8211; Button</a></li>
+	<li id="menu-item-mobile4926" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-carouselalt-section/">Shortcode &#8211; Carousel &#038; Alt Section</a></li>
+</ul>
+</li>
+<li id="menu-item-mobile4883" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/features/">Features</a></li>
+</ul></nav><div class="layout">
+    <div class="wrap">
+    <!--Header-->
+	
+<header class="header-default">
+
+    <div class="container clearfix">
+        
+        <div class="logo">
+            <a href="http://demo.sacredpixel.com/wp/smart7">
+                <img src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/LOGO-smart7.png" alt="Logo" />
+            </a>
         </div>
-      </div>
 
-      <div id="right">
-        <div class="right-item">This section is used for browsing the site conveniently.</div>
-      </div>
+        <nav class="navigation hidden-tablet hidden-phone">
+            <ul id="menu-home-1" class="clearfix"><li id="menu-item-5029" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home"><a href="http://demo.sacredpixel.com/wp/smart7">Home</a>
+<ul class="sub-menu">
+	<li id="menu-item-4902" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-tech-show/">Home | Tech Show</a></li>
+	<li id="menu-item-4904" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-main/">Home | Landing Style</a></li>
+	<li id="menu-item-4907" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-clean-minimal/">Home | Clean &#038; Minimal</a></li>
+	<li id="menu-item-6138" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/">Home | Smart</a></li>
+	<li id="menu-item-4903" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-app-store/">Home | App Store</a></li>
+	<li id="menu-item-4905" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-parallax/">Home | Parallax</a></li>
+	<li id="menu-item-4923" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-fancy-night/">Home | Fancy Night</a></li>
+	<li id="menu-item-4906" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-products/">Home | Products</a></li>
+	<li id="menu-item-4879" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/home-photography/">Home | Photography</a></li>
+</ul>
+</li>
+<li id="menu-item-5023" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/slider-full-page/">Slider</a>
+<ul class="sub-menu">
+	<li id="menu-item-4899" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-product/">Slider | Shoping</a></li>
+	<li id="menu-item-4892" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-full-page/">Slider | Full Page</a></li>
+	<li id="menu-item-4897" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-3d/">Slider | 3D</a></li>
+	<li id="menu-item-4927" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-carousel/">Slider | Carousel</a></li>
+	<li id="menu-item-4901" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-banner/">Slider | Banner</a></li>
+	<li id="menu-item-5624" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-artistic-mention/">Slider | Artistic Mention</a></li>
+	<li id="menu-item-6188" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-fashion/">Slider | Fashion</a></li>
+	<li id="menu-item-4896" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/sldier-showcase/">Slider | Showcase</a></li>
+	<li id="menu-item-4900" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-one-page/">Slider | One Page</a></li>
+	<li id="menu-item-4891" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-quote/">Slider | Quote</a></li>
+	<li id="menu-item-4893" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-clear/">Slider | Clean</a></li>
+	<li id="menu-item-4898" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/slider-thumbnail/">Slider | Thumbnail</a></li>
+</ul>
+</li>
+<li id="menu-item-5038" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio</a>
+<ul class="sub-menu">
+	<li id="menu-item-6139" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-artistic-mention/">Portfolio | Artistic Mention</a></li>
+	<li id="menu-item-4884" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio | Masonry</a></li>
+	<li id="menu-item-5039" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-12/?pnt=2074">Single Portfolio | Split</a></li>
+	<li id="menu-item-5040" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-10/?pnt=2074">Single Portfolio | Wide</a></li>
+	<li id="menu-item-5041" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-2-2/?pnt=2074">Single Portfolio | Wide  2</a></li>
+	<li id="menu-item-5042" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/detail-3/">Single Portfolio | Slideshow</a></li>
+	<li id="menu-item-5043" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolios/arty-15/">Single Portfolio | Video</a></li>
+	<li id="menu-item-5044" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry/">Portfolio Masonry Grid</a>
+	<ul class="sub-menu">
+		<li id="menu-item-4885" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-2-columns/">Portfolio | Masonry 2 Columns</a></li>
+		<li id="menu-item-4886" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-3-columns/">Portfolio | Masonry 3 Columns</a></li>
+		<li id="menu-item-4887" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-masonry-4-columns/">Portfolio | Masonry 4 Columns</a></li>
+	</ul>
+</li>
+	<li id="menu-item-5045" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-4-columns">Portfolio Static Grid</a>
+	<ul class="sub-menu">
+		<li id="menu-item-6135" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-2-columns/">Portfolio | Static 2 Columns</a></li>
+		<li id="menu-item-4889" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-3-columns/">Portfolio | Static 3 Columns</a></li>
+		<li id="menu-item-4890" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/portfolio-static-4-columns/">Portfolio | Static 4 Columns</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-5034" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/page-about-us-2/">Page</a>
+<ul class="sub-menu">
+	<li id="menu-item-5426" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/about-team/">About Us 2</a></li>
+	<li id="menu-item-4919" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-about-me/">About  Me</a></li>
+	<li id="menu-item-4928" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-office/">Office</a></li>
+	<li id="menu-item-6345" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-contact/">Contact</a></li>
+	<li id="menu-item-5650" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-contact-full/">Contact Full</a></li>
+	<li id="menu-item-5427" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/faq/">FAQ</a></li>
+	<li id="menu-item-5424" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-testimonial/">Testimonial</a></li>
+	<li id="menu-item-6112" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-parallax/">Parallax</a></li>
+	<li id="menu-item-5031" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/404.php">404 Page</a></li>
+	<li id="menu-item-5032" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/?s=Image">Search Result</a></li>
+	<li id="menu-item-5033" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/2013/08/">Archive</a></li>
+	<li id="menu-item-6344" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-full-width/">Full Width</a></li>
+	<li id="menu-item-6343" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-right-sidebar-2/">Right Sidebar</a></li>
+	<li id="menu-item-6342" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/page-left-sidebar/">Left Sidebar</a></li>
+</ul>
+</li>
+<li id="menu-item-4882" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-675 current_page_item current_page_parent"><a href="http://demo.sacredpixel.com/wp/smart7/blog/">Blog</a>
+<ul class="sub-menu">
+	<li id="menu-item-6080" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/slim-white/">Standard Post</a></li>
+	<li id="menu-item-5025" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/swiss">Video Post</a></li>
+	<li id="menu-item-5026" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/lux-aeterna/">Sound Post</a></li>
+	<li id="menu-item-5027" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/sport">Gallery Post</a></li>
+	<li id="menu-item-6162" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/6/">Quote Post</a></li>
+</ul>
+</li>
+<li id="menu-item-5030" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-icon-boxes/">Shortcodes</a>
+<ul class="sub-menu">
+	<li id="menu-item-4909" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-icon-boxes/">Shortcode &#8211; Icon Boxes</a></li>
+	<li id="menu-item-4910" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-columns/">Shortcode &#8211; Columns</a></li>
+	<li id="menu-item-4911" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-contact-forms/">Shortcode &#8211; Contact Forms</a></li>
+	<li id="menu-item-4912" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-google-map/">Shortcode &#8211; Google Map</a></li>
+	<li id="menu-item-4913" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-layer-slider/">Shortcode &#8211; Layer Slider</a></li>
+	<li id="menu-item-4914" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-portfolio/">Shortcode &#8211; Portfolio</a></li>
+	<li id="menu-item-4915" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-post-slider/">Shortcode &#8211; Post and Portfolio Slider</a></li>
+	<li id="menu-item-4916" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-progress-bar/">Shortcode &#8211; Progress Bar</a></li>
+	<li id="menu-item-4917" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-separator/">Shortcode &#8211; Separator</a></li>
+	<li id="menu-item-4920" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-tab-toggle/">Shortcode &#8211; Tab &#038; Toggle</a></li>
+	<li id="menu-item-4921" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-team-members/">Shortcode &#8211; Team Members</a></li>
+	<li id="menu-item-4922" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-testimonial/">Shortcode &#8211; Testimonial</a></li>
+	<li id="menu-item-4924" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-sidebar/">Shortcode &#8211; Sidebar</a></li>
+	<li id="menu-item-4925" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-button/">Shortcode &#8211; Button</a></li>
+	<li id="menu-item-4926" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/shortcode-carouselalt-section/">Shortcode &#8211; Carousel &#038; Alt Section</a></li>
+</ul>
+</li>
+<li id="menu-item-4883" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://demo.sacredpixel.com/wp/smart7/features/">Features</a></li>
+    <li id="menu-item-search" class="menu-item menu-item-search">
+        <a href="#"><span class="icon-search"></span></a>
+        <div class="search-template">
+            <div class="search-form">
+    <form action="http://demo.sacredpixel.com/wp/smart7/">
+        <fieldset>
+            <input type="text" name="s" placeholder="Search Here..." value="">
+            <input type="submit" value="">
+        </fieldset>
+    </form>
+</div>        </div>
+    </li>
+    </ul>        </nav>
 
-      <div id="footer">
-          &copy;2014 taj Beta 1.0
-      </div>
+        <a class="navigation-button hidden-desktop" href="#">
+            <span class="icon-paragraph-justify-2"></span>
+        </a>
 
-  </body>
+    </div>
+
+</header>	<!--End Header-->    <!--Content-->
+    <div id="main" class="container container-vspace">
+        <div class="row">
+            <div class="span8">
+                <div class="posts">
+
+            <div class="post-1346 post type-post status-publish format-gallery hentry category-art tag-beautiful tag-exciting tag-gallery tag-images tag-runner tag-sky-diving tag-speed tag-sport clearfix" >
+            <div class="post-meta">
+    <h2 class="post-title"><a href="http://demo.sacredpixel.com/wp/smart7/sport/">GREAT DAY BROWNI DOG!</a></h2>
+    <hr />
+    <div class="post-info-container clearfix">
+        <div class="post-comments"><a href="http://demo.sacredpixel.com/wp/smart7/sport/#comments" class="comments-link"  title="Comment on GREAT DAY BROWNI DOG!">1</a></div>
+        <div class="post-info">
+            <span class="post-date">September 1, 2013</span>
+            <span class="post-info-separator">/</span>
+            <span class="post-categories">in <a href="http://demo.sacredpixel.com/wp/smart7/category/art/" title="View all posts in Art" rel="category tag">Art</a></span>
+            <span class="post-info-separator">/</span>
+            <span class="post-author">by <a href="http://demo.sacredpixel.com/wp/smart7/author/josef/" title="Posts by Joseph Anderson" rel="author">Joseph Anderson</a></span>
+        </div>
+    </div>
+        <div class="tagcloud"><a href="http://demo.sacredpixel.com/wp/smart7/tag/beautiful/" rel="tag">Beautiful</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/exciting/" rel="tag">Exciting</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/gallery/" rel="tag">Gallery</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/images/" rel="tag">Images</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/runner/" rel="tag">Runner</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/sky-diving/" rel="tag">Sky Diving</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/speed/" rel="tag">Speed</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/sport/" rel="tag">Sport</a></div>
+    </div><div class="post-content">
+    <div class="post-media">
+            <div class="flexslider">
+            <ul class="slides">
+                                    <li><img width="485" height="300" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/09/BLOG13-485x300.jpg" class="attachment-post-thumbnail" alt="BLOG1" /></li>
+                                    <li><img width="485" height="300" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/09/Blog21-485x300.jpg" class="attachment-post-thumbnail" alt="Blog2" /></li>
+                            </ul>
+        </div>
+        </div>
+    <p>Physical exercise is good for mind, body, and spirit. Furthermore, team sports are good for learning accountability, dedication, and leadership; among many other traits. Putting it all together by playing a sport is a winning combination.</p>
+<p> <a href="http://demo.sacredpixel.com/wp/smart7/sport/#more-1346" class="more-link">Keep Reading &rarr;</a></p>
+</div>        </div>
+            <div class="post-819 post type-post status-publish format-gallery hentry category-art tag-art tag-atteractive tag-beautiful tag-face tag-gallery tag-heart tag-image tag-nina-agdal tag-pictures tag-women clearfix" >
+            <div class="post-meta">
+    <h2 class="post-title"><a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/">MY KITCHEN &#038; GREEN PIECE</a></h2>
+    <hr />
+    <div class="post-info-container clearfix">
+        <div class="post-comments"><a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/#comments" class="comments-link"  title="Comment on MY KITCHEN &amp; GREEN PIECE">4</a></div>
+        <div class="post-info">
+            <span class="post-date">August 25, 2013</span>
+            <span class="post-info-separator">/</span>
+            <span class="post-categories">in <a href="http://demo.sacredpixel.com/wp/smart7/category/art/" title="View all posts in Art" rel="category tag">Art</a></span>
+            <span class="post-info-separator">/</span>
+            <span class="post-author">by <a href="http://demo.sacredpixel.com/wp/smart7/author/josef/" title="Posts by Joseph Anderson" rel="author">Joseph Anderson</a></span>
+        </div>
+    </div>
+        <div class="tagcloud"><a href="http://demo.sacredpixel.com/wp/smart7/tag/art/" rel="tag">Art</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/atteractive/" rel="tag">Atteractive</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/beautiful/" rel="tag">Beautiful</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/face/" rel="tag">Face</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/gallery/" rel="tag">Gallery</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/heart/" rel="tag">Heart</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/image/" rel="tag">Image</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/nina-agdal/" rel="tag">Nina Agdal</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/pictures/" rel="tag">Pictures</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/women/" rel="tag">Women</a></div>
+    </div><div class="post-content">
+    <div class="post-media">
+            <div class="flexslider">
+            <ul class="slides">
+                                    <li><img width="485" height="300" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/08/BLOG31-485x300.jpg" class="attachment-post-thumbnail" alt="BLOG3" /></li>
+                                    <li><img width="485" height="300" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/08/232501722293999589_a44ae4146326-485x300.jpeg" class="attachment-post-thumbnail" alt="232501722293999589_a44ae4146326" /></li>
+                            </ul>
+        </div>
+        </div>
+    <p>What is it that makes a face look beautiful? What are the differences between very attractive and less appealing faces? For every historical period and every human culture, people have always had their own ideal of beauty. But this ideal has never been constant and is still subject to changes.</p>
+<p> <a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/#more-819" class="more-link">Keep Reading &rarr;</a></p>
+</div>        </div>
+            <div class="post-822 post type-post status-publish format-video hentry category-videos tag-art tag-pixflow tag-poweful tag-swiss tag-video clearfix" >
+            <div class="post-meta">
+    <h2 class="post-title"><a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/">Sony Typography</a></h2>
+    <hr />
+    <div class="post-info-container clearfix">
+        <div class="post-comments"><a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/#comments" class="comments-link"  title="Comment on Sony Typography">1</a></div>
+        <div class="post-info">
+            <span class="post-date">August 25, 2013</span>
+            <span class="post-info-separator">/</span>
+            <span class="post-categories">in <a href="http://demo.sacredpixel.com/wp/smart7/category/videos/" title="View all posts in Videos" rel="category tag">Videos</a></span>
+            <span class="post-info-separator">/</span>
+            <span class="post-author">by <a href="http://demo.sacredpixel.com/wp/smart7/author/josef/" title="Posts by Joseph Anderson" rel="author">Joseph Anderson</a></span>
+        </div>
+    </div>
+        <div class="tagcloud"><a href="http://demo.sacredpixel.com/wp/smart7/tag/art/" rel="tag">Art</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/pixflow/" rel="tag">Pixflow</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/poweful/" rel="tag">Poweful</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/swiss/" rel="tag">Swiss</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/video/" rel="tag">Video</a></div>
+    </div><div class="post-content">
+            <div class="post-media video-frame">
+                <iframe src="http://player.vimeo.com/video/51460511?color=ff4c2f" width="640" height="360" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+    <p> <a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/#more-822" class="more-link">Keep Reading &rarr;</a></p>
+</div>        </div>
+            <div class="post-815 post type-post status-publish format-audio hentry category-sound tag-music tag-sound clearfix" >
+            <div class="post-meta">
+    <h2 class="post-title"><a href="http://demo.sacredpixel.com/wp/smart7/someone-like-you/">Someone Like You</a></h2>
+    <hr />
+    <div class="post-info-container clearfix">
+        <div class="post-comments"><a href="http://demo.sacredpixel.com/wp/smart7/someone-like-you/#comments" class="comments-link"  title="Comment on Someone Like You">3</a></div>
+        <div class="post-info">
+            <span class="post-date">August 21, 2013</span>
+            <span class="post-info-separator">/</span>
+            <span class="post-categories">in <a href="http://demo.sacredpixel.com/wp/smart7/category/sound/" title="View all posts in Sound" rel="category tag">Sound</a></span>
+            <span class="post-info-separator">/</span>
+            <span class="post-author">by <a href="http://demo.sacredpixel.com/wp/smart7/author/josef/" title="Posts by Joseph Anderson" rel="author">Joseph Anderson</a></span>
+        </div>
+    </div>
+        <div class="tagcloud"><a href="http://demo.sacredpixel.com/wp/smart7/tag/music/" rel="tag">Music</a><a href="http://demo.sacredpixel.com/wp/smart7/tag/sound/" rel="tag">Sound</a></div>
+    </div><div class="post-content">
+            <div class="post-media audio-frame">
+        <iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=true&url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F29006220&show_artwork=true"></iframe>        </div>
+    <p> <a href="http://demo.sacredpixel.com/wp/smart7/someone-like-you/#more-815" class="more-link">Keep Reading &rarr;</a></p>
+</div>        </div>
+            <div class="post-812 post type-post status-publish format-quote hentry category-post-format-quote tag-post-format-quote tag-wise-word clearfix" >
+            <div class="post-meta">
+    &nbsp;
+</div>
+<div class="post-content">
+    <blockquote><p>The first and greatest victory is to conquer yourself; to be conquered by yourself is of all things most shameful and vile</p>
+<span class="name">Plato</span><span class="end"></span></blockquote>
+</div>        </div>
+    
+</div><div class="post-pagination"><span class="this-page">1</span><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/2/">2</a><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/3/">3</a><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/4/">4</a><span class="page-numbers">&hellip;</span><a href="http://demo.sacredpixel.com/wp/smart7/blog/page/6/">6</a><a class="next-page-link" href="http://demo.sacredpixel.com/wp/smart7/blog/page/2/">Next</a></div><!-- post-pagination -->            </div>
+            <div class="span3 offset1"><div class="sidebar widget-area"><div id="search-6" class="widget widget_search"><div class="search-form">
+    <form action="http://demo.sacredpixel.com/wp/smart7/">
+        <fieldset>
+            <input type="text" name="s" placeholder="Search Here..." value="">
+            <input type="submit" value="">
+        </fieldset>
+    </form>
+</div></div><div id="px_recent_posts-2" class="widget widget_px_recent_posts"><h4 class="widget-title">Recent Posts</h4><hr class="hr-small" />		<div class="item-list">
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/sport/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/09/BLOG1-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="BLOG1" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/sport/" class="item-title">GREAT DAY BROWNI DOG!</a>
+                        <span class="item-date">September 1, 2013</span>
+                    </div>
+				</div>
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/Untitled-1_05-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="Untitled-1_05" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/" class="item-title">MY KITCHEN &#038; GREEN PIECE</a>
+                        <span class="item-date">August 25, 2013</span>
+                    </div>
+				</div>
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/Untitled-1_03-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="Untitled-1_03" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/" class="item-title">Sony Typography</a>
+                        <span class="item-date">August 25, 2013</span>
+                    </div>
+				</div>
+					</div>
+		</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="widget-title">Recent Posts</h4><hr class="hr-small" />		<ul>
+					<li>
+				<a href="http://demo.sacredpixel.com/wp/smart7/sport/" title="GREAT DAY BROWNI DOG!">GREAT DAY BROWNI DOG!</a>
+						</li>
+					<li>
+				<a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/" title="MY KITCHEN &amp; GREEN PIECE">MY KITCHEN &#038; GREEN PIECE</a>
+						</li>
+					<li>
+				<a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/" title="Sony Typography">Sony Typography</a>
+						</li>
+					<li>
+				<a href="http://demo.sacredpixel.com/wp/smart7/someone-like-you/" title="Someone Like You">Someone Like You</a>
+						</li>
+					<li>
+				<a href="http://demo.sacredpixel.com/wp/smart7/another-quote/" title="Plato">Plato</a>
+						</li>
+				</ul>
+		</div><div id="text-4" class="widget widget_text"><h4 class="widget-title">About Smart7</h4><hr class="hr-small" />			<div class="textwidget">smart7 is a multi-purpose retina ready wordpress theme with incredible functionality. You can literally build each page with our awesome shortcode generator, customize it and change each element’s position to make the best layout out of our design. It’s design is stunning,</div>
+		</div><div id="px_flickr-3" class="widget widget_px_flickr"><h4 class="widget-title">My Photostream</h4><hr class="hr-small" />			
+		<div class="flickr-container">
+		
+			<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=8710861@N07"></script>
+			
+		</div>
+		
+		</div><div id="px_progress-5" class="widget widget_px_progress"><h4 class="widget-title">Skills</h4><hr class="hr-small" />        <div class="progress-list">
+                    <div class="progressbar">
+                <h4 class="title">news</h4>
+                <div class="progress"><div class="progress-inner" style="width:90%"></div></div>
+            </div>
+                        <div class="progressbar">
+                <h4 class="title">poletics</h4>
+                <div class="progress"><div class="progress-inner" style="width:70%"></div></div>
+            </div>
+                        <div class="progressbar">
+                <h4 class="title">community</h4>
+                <div class="progress"><div class="progress-inner" style="width:50%"></div></div>
+            </div>
+                    </div>
+        </div></div></div>
+        </div>
+    </div>
+
+<footer class="footer-default">
+        <div class="footer-widgets">
+        <div class="container">
+            <div class="row widget-area">
+                                    <div class="span3"><div id="px_recent_posts-3" class="widget widget_px_recent_posts"><h4 class="widget-title">Recent Posts</h4><hr class="hr-small" />		<div class="item-list">
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/sport/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/09/BLOG1-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="BLOG1" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/sport/" class="item-title">GREAT DAY BROWNI DOG!</a>
+                        <span class="item-date">September 1, 2013</span>
+                    </div>
+				</div>
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/Untitled-1_05-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="Untitled-1_05" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/heart-hand/" class="item-title">MY KITCHEN &#038; GREEN PIECE</a>
+                        <span class="item-date">August 25, 2013</span>
+                    </div>
+				</div>
+							<div class="item clearfix">
+                    <a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/" class="item-image">
+                        <img width="75" height="63" src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/Untitled-1_03-75x63.jpg" class="attachment-recent-widget wp-post-image" alt="Untitled-1_03" />                    </a>
+                    <div class="item-info">
+					    <a href="http://demo.sacredpixel.com/wp/smart7/sony-typography/" class="item-title">Sony Typography</a>
+                        <span class="item-date">August 25, 2013</span>
+                    </div>
+				</div>
+					</div>
+		</div>                        &nbsp;
+                    </div>
+                                    <div class="span3"><div id="px_twitter-2" class="widget widget_px_twitter"><h4 class="widget-title">Recent Tweets</h4><hr class="hr-small" />		<ul class="twitter-recent-list">
+        <li><span>Check out new work on my @<a href="http://twitter.com/Behance">Behance</a> portfolio: "SEO - Corporate Typography Pack" <a href="http://t.co/JWfg3FGYv8">http://t.co/JWfg3FGYv8</a></span><br/><a class="link" href="http://twitter.com/PixFlow/statuses/483927437881790464">10 days ago</a></li><li><span>Pixity Royalty Free Icons by @<a href="http://twitter.com/pixflow">pixflow</a> on @<a href="http://twitter.com/dribbble">dribbble</a> <a href="https://t.co/wQCAOwphQF">https://t.co/wQCAOwphQF</a></span><br/><a class="link" href="http://twitter.com/PixFlow/statuses/481414584901718016">17 days ago</a></li>		</ul>
+		<hr class="hr-twitter hr-small" />
+		<a href="http://twitter.com/pixflow" class="join">Follow Us</a>
+		</div>                        &nbsp;
+                    </div>
+                                    <div class="span3"><div id="px_progress-3" class="widget widget_px_progress"><h4 class="widget-title">Skills</h4><hr class="hr-small" />        <div class="progress-list">
+                    <div class="progressbar">
+                <h4 class="title">Illustration</h4>
+                <div class="progress"><div class="progress-inner" style="width:90%"></div></div>
+            </div>
+                        <div class="progressbar">
+                <h4 class="title">Programing</h4>
+                <div class="progress"><div class="progress-inner" style="width:70%"></div></div>
+            </div>
+                        <div class="progressbar">
+                <h4 class="title">Css Coding</h4>
+                <div class="progress"><div class="progress-inner" style="width:50%"></div></div>
+            </div>
+                        <div class="progressbar">
+                <h4 class="title">Design</h4>
+                <div class="progress"><div class="progress-inner" style="width:30%"></div></div>
+            </div>
+                    </div>
+        </div>                        &nbsp;
+                    </div>
+                                    <div class="span3"><div id="px_flickr-2" class="widget widget_px_flickr"><h4 class="widget-title">My Photostream</h4><hr class="hr-small" />			
+		<div class="flickr-container">
+		
+			<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=10&amp;display=random&amp;size=s&amp;layout=x&amp;source=user&amp;user=33737155@N03"></script>
+			
+		</div>
+		
+		</div>                        &nbsp;
+                    </div>
+                            </div>
+        </div>
+    </div>
+        <div id="footer-bottom">
+        <div class="container">
+                        <div class="logo"><img src="http://demo.sacredpixel.com/wp/smart7/wp-content/uploads/2013/10/fotter2.png" alt="Logo"/></div>
+                        <p class="copyright">© 2014 PixFlow is proudly powered by <a href="http://wordpress.org">WordPress</a> | Built With Smart7 Theme&nbsp;</p>
+            <ul class="social-icons">
+                                <li><a href="https://www.facebook.com/pages/PixFlow/107145602731642"><span class="icon-facebook-3"></span></a></li>
+                                <li><a href="http://twitter.com/PixFlow"><span class="icon-twitter-3 "></span></a></li>
+                                <li><a href="http://vimeo.com/43698490"><span class="icon-vimeo-2"></span></a></li>
+                                <li><a href="http://www.youtube.com/user/pxflow"><span class="icon-youtube"></span></a></li>
+                                <li><a href="http://dribbble.com/PixFlow"><span class="icon-dribbble-3"></span></a></li>
+                                <li><a href="http://demo.sacredpixel.com/wp/smart7/?feed=rss2"><span class="icon-feed-3"></span></a></li>
+                
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!--end of wrap element-->
+</div>
+<!--end of layout element-->
+</div>
+	<!-- Theme Hook -->
+	    <script type="text/javascript">var theme_uri = {"css":"http:\/\/demo.sacredpixel.com\/wp\/smart7\/wp-content\/themes\/Smart7\/assets\/css","img":"http:\/\/demo.sacredpixel.com\/wp\/smart7\/wp-content\/themes\/Smart7\/assets\/img"};
+var gkey = "";</script>
+    <script data-main="http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/assets/js/theme" src="http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/assets/js/require.js" ></script>
+        <!-- Demo Settings Panel Start -->
+    <style type="text/css">
+        #demo-settings-panel{
+            position: absolute;
+            width: 195px;
+            z-index: 999;
+            left:-195px;
+            top:115px;
+            -webkit-box-shadow: 0 2px 3px rgba(50, 50, 50, 0.3);
+            -moz-box-shadow:    0 2px 3px rgba(50, 50, 50, 0.3);
+            box-shadow:         0 2px 3px rgba(50, 50, 50, 0.3);
+        }
+        #demo-settings-panel .panel-tab{
+            width:39px;
+            position:absolute;
+            top:40px;
+            right:-39px;
+            cursor: pointer;
+            height: 160px;
+            background: url(http://demo.sacredpixel.com/wp/smart7/wp-content/themes/Smart7/assets/img/demo-settings-tab.png);
+        }
+        #demo-settings-panel .panel-container{
+            background-color: #FFF;
+            padding: 13px 14px 18px;
+        }
+        #demo-settings-panel .color-list{
+            list-style: none;
+            padding:0;
+            margin-left: -10px;
+        }
+        #demo-settings-panel .color-list li{
+            display: block;
+            float:left;
+            margin: 0 0 10px 10px;
+            width:32px;
+            height:32px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        (function($){
+
+            function Desaturate(value, amount, min)
+            {
+                min = typeof min !== 'undefined' ? min : 0;
+
+                var color = RgbToHsv(value),
+                    val   = Math.max(color[1] - amount, min);
+
+                color = HsvToRgb(color[0], val, color[2]);
+
+                return color;
+            }
+
+            function ProgressBGColor(color)
+            {
+                var hsv = RgbToHsv(color), val;
+
+                if(hsv[1] >= 50)
+                {
+                    val = Math.round(hsv[1] * .2);
+                }
+                else if(hsv[1] >= 30 && hsv[1] < 50)
+                {
+                    val = Math.round(hsv[1] * .4);
+                }
+                else
+                {
+                    val = Math.max(hsv[1]-10, 5);
+                }
+
+                return HsvToRgb(hsv[0], val, hsv[2]);
+            }
+
+            function CssColorToRgb(color)
+            {
+                var digits = /rgb\((\d+), (\d+), (\d+)\)/i.exec(color);
+                return [parseInt(digits[1]), parseInt(digits[2]), parseInt(digits[3])];
+            }
+
+            function RgbToHsv (rgb)
+            {
+                var R = (rgb[0] / 255),
+                    G = (rgb[1] / 255),
+                    B = (rgb[2] / 255);
+
+                var maxRGB = Math.max(R, G, B),
+                    minRGB = Math.min(R, G, B),
+                    chroma = maxRGB - minRGB,
+                    computedV = 100 * maxRGB,
+                    h;
+
+                if (chroma == 0)
+                    return [0, 0, computedV];
+
+                var computedS = 100 * (chroma / maxRGB);
+
+                if (R == minRGB)
+                    h = 3 - ((G - B) / chroma);
+                else if (B == minRGB)
+                    h = 1 - ((R - G) / chroma);
+                else // $G == $minRGB
+                    h = 5 - ((B - R) / chroma);
+
+                var computedH = 60 * h;
+
+                return [computedH, computedS, computedV];
+            }
+
+            function HsvToRgb(iH, iS, iV)
+            {
+                iH = Math.min(Math.max(iH, 0), 360);// Hue
+                iS = Math.min(Math.max(iS, 0), 100);// Saturation
+                iV = Math.min(Math.max(iV, 0), 100);// Lightness
+
+                var dS =  iS/100.0,
+                    dV =  iV/100.0,
+                    dC =  dV*dS,
+                    dH =  iH/60.0,
+                    dT =  dH;
+
+                while(dT >= 2.0) dT -= 2.0;
+                var dX = dC*(1-Math.abs(dT-1)),
+                    dR, dG, dB;
+
+                if(dH >= 0.0 && dH < 1.0){
+                    dR = dC; dG = dX; dB = 0.0;
+                }
+                else if(dH >= 1.0 && dH < 2.0){
+                    dR = dX; dG = dC; dB = 0.0;
+                }
+                else if(dH >= 2.0 && dH < 3.0){
+                    dR = 0.0; dG = dC; dB = dX;
+                }
+                else if(dH >= 3.0 && dH < 4.0){
+                    dR = 0.0; dG = dX; dB = dC;
+                }
+                else if(dH >= 4.0 && dH < 5.0){
+                    dR = dX; dG = 0.0; dB = dC;
+                }
+                else if(dH >= 5.0 && dH < 6.0){
+                    dR = dC; dG = 0.0; dB = dX;
+                }
+                else{
+                    dR = 0.0; dG = 0.0; dB = 0.0;
+                }
+
+                var dM  = dV - dC;
+                dR += dM; dG += dM; dB += dM;
+                dR *= 255; dG *= 255; dB *= 255;
+
+                return [Math.round(dR), Math.round(dG), Math.round(dB)];
+            }
+
+            $(function(){
+                var $demoPanel    = $('#demo-settings-panel'),
+                    colorTemplate = $('#demo-css-template').text(),
+                    panelLeft  = $demoPanel.css('left'),
+                    $lastStyle = $();
+
+                $demoPanel.find('.panel-tab').click(function(){
+                    if($demoPanel.hasClass('panel-open'))
+                        $demoPanel.animate({left: panelLeft}, 500);
+                    else
+                        $demoPanel.animate({left: 0}, 500);
+
+                    $demoPanel.toggleClass('panel-open');
+                });
+
+                $demoPanel.find('.color-list li').click(function(){
+                    $lastStyle.remove();
+
+                    var $this = $(this),
+                        color = $this.css('background-color'),
+                        rgb   = CssColorToRgb(color),
+                        template = colorTemplate;
+
+                    template = template.replace(/\[color\]/g, color);
+                    template = template.replace(/\[rgbcolor\]/g, rgb.join(', '));
+                    template = template.replace(/\[progressBGColor\]/g, "rgb(" + ProgressBGColor(rgb).join(', ') + ")");
+                    template = template.replace(/\[searchHColor\]/g, "rgb(" + Desaturate(rgb, 30).join(', ') + ")");
+
+                    $lastStyle = $('<style type="text/css">'+template+'</style>');
+                    $lastStyle.appendTo($('head'));
+                });
+
+            });
+        })(jQuery);
+    </script>
+    <div id="demo-settings-panel" class="hidden-phone hidden-tablet">
+        <div class="panel-container">
+            <h3>Color Settings</h3>
+            <p>Here are some suggested colors. You can use any color you like from admin panel.</p>
+            <ul class="color-list clearfix">
+                <li style="background-color: #ff4c2f" ></li>
+                <li style="background-color: #eb2130" ></li>
+                <li style="background-color: #363636" ></li>
+                <li style="background-color: #eb2071" ></li>
+                <li style="background-color: #ffdb0d" ></li>
+                <li style="background-color: #96d639" ></li>
+                <li style="background-color: #4dac46" ></li>
+                <li style="background-color: #23d692" ></li>
+                <li style="background-color: #45c1e5" ></li>
+                <li style="background-color: #073b87" ></li>
+                <li style="background-color: #423c6c" ></li>
+                <li style="background-color: #dbbe7c" ></li>
+            </ul>
+        </div>
+        <div class="panel-tab"></div>
+    </div>
+    <script id="demo-css-template" type="text/html">
+    ::-moz-selection { background:[color]; /* Firefox */ }
+    ::selection { background:[color]; /* Safari */ }
+    a{ color:[color]; }
+    blockquote{ color:[color]; }
+    .button2, form input[type="submit"]{ border:1px solid [color]; color:[color]; }
+    form input[type="submit"]:hover, form input[type="submit"]:active, .button2:hover{ background-color:[color]; }
+    .button1{ background-color:[color]; }
+    .color-accent-background { background-color:[color]; }
+    .color-accent-foreground{ color:[color]; }
+    .search-form form{ border:1px solid [color]; }
+    .search-form input[type="submit"]{ background-color:[color]; }
+    .search-form input[type="submit"]:hover{ background-color:[searchHColor]; }
+
+    header .navigation-button:hover{ color: [color]; }
+
+    header .navigation > ul > li:hover > a{ border:1px solid [color]; color:[color] }
+
+    header .navigation > ul > li.current-menu-item > a,
+    header .navigation > ul > li.current-menu-ancestor > a{ background-color: [color]; color:#FFF; }
+
+    header .navigation li li:hover{ background-color: [color]; }
+
+    header #menu-item-search > a{ border-left: 1px solid [color]; }
+
+    header #menu-item-search:hover a{ color:[color]; }
+
+    #page-title{ background-color:[color]; }
+
+    .widget-area .widget-title{ color:[color]; }
+
+    .widget-area a:hover{ color:[color]; }
+
+    .widget-area .search-form input[type="submit"]{ background-color:[color]; }
+
+    .tagcloud a:hover{ color:[color]; }
+
+    .widget_bj_testimonials .name{ color: [color]; }
+
+    #footer-bottom a:hover{ color:[color]; }
+
+    footer .social-icons span:hover { color: [color]; }
+
+    footer .widget-area hr{ background-color: [color]; }
+
+    footer .widget_tag_cloud a:hover{ background-color: [color]; border:1px solid [color]; }
+
+    .footer-widgets .wpcf7 input[type="submit"]:hover{ background-color: [color]; }
+
+    footer .widget_px_progress .progress{ background-color:[progressBGColor]; }
+
+    .iconbox.iconbox-hex:hover .icon{ background-color: [color]; }
+
+    .iconbox.iconbox-circle:hover .icon{ border:1px solid [color]; }
+
+    .iconbox .glyph{ color: [color]; }
+
+    .iconbox.iconbox-circle:hover .glyph,
+    .iconbox.iconbox-hex:hover .glyph{ color:[color]; }
+
+    .iconbox:hover .title{ color:[color]; }
+
+    .iconbox .more-link a:hover{ color: [color]; }
+
+    .portfolio-list .item-meta a{ color: [color]; }
+
+    .portfolio-style1 .item-image-overlay{
+    background-color: [color];
+    background-color: rgba([rgbcolor], .7);
+    }
+
+    .portfolio-style1 .item-icon:hover{ color: [color]; }
+
+    .portfolio-style2 .item-image-overlay{
+    background-color: [color];
+    background-color: rgba([rgbcolor], .3);
+    }
+
+    .portfolio-style2 .item-icon:hover { background: [color]; }
+
+    .portfolio-list .filter .current { border-top:1px solid [color]; border-bottom:1px solid [color]; border-left:1px solid [color]; background-color: [color]; }
+
+    .portfolio-list .filter .current:last-child { border-right:1px solid [color]; }
+
+    .team-member .name a{ color:[color]; }
+
+    .team-member .image-overlay-wrap {
+    background-color: [color];
+    background-color: rgba([rgbcolor], .8);
+    }
+
+    .team-member .icons a:hover{ color:[color]; }
+
+    .progressbar .progress{ background-color:[progressBGColor]; }
+
+    .progressbar .progress-inner{ background-color: [color]; }
+
+    .accordion .header:hover .title,
+    .toggle .header:hover .title,
+    .accordion .header:hover .tab-button,
+    .toggle .header:hover .tab-button{ color:[color]; }
+
+    .post-slider .slider-nav{ border:1px solid [color]; }
+
+    .post-slider .nav-separator{ background-color: [color]; }
+
+    .post-slider .nav-prev,
+    .post-slider .nav-next{ background-color:[color]; }
+
+    .post-slider .format-quote .item-media{ background-color: [color]; }
+
+    .post-slider .media-date{ background-color: [color]; }
+
+    .horizontal-tab .titles .current{ color:[color]; }
+
+    .horizontal-tab .titles .current .pointer { border-color: [color];  }
+
+    .tabs .head .current,
+    .tabs .head li:hover{ color:[color]; }
+
+    .tabs .head .current{ border-bottom: 2px solid [color]; }
+
+    .portfolio-related .overlay hr{ background-color: [color]; }
+
+    .archive .comments-link,
+    .blog .comments-link{ color: [color]; background-color: [color]; }
+
+    .post.format-quote blockquote{ color: [color]; border:1px solid [color]; }
+
+    .post .post-title{ color: [color]; }
+
+    .post-pagination a:hover,
+    .post-pagination .this-page{ background-color: [color]; border-color: [color]; }
+
+    .comments-list .comment-reply-link:hover{ background-color: [color]; }
+
+    #commentform input[type="submit"]{ border:1px solid [color]; color:[color]; }
+
+    #commentform input[type="submit"]:hover{ background-color:[color]; }
+
+    .search-item .count{ color: [color]; }
+    </script>
+    <script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.45.0-2013.10.17'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/demo.sacredpixel.com\/wp\/smart7\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ..."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://demo.sacredpixel.com/wp/smart7/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.5.4'></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","licenseKey":"653b0fd003","applicationID":"4127486","transactionName":"ZQcDZUEHVhIHURUMDVxNIFJHD1cPSVsPAQdK","queueTime":0,"applicationTime":6014,"ttGuid":"","agentToken":"","atts":"SUAAEwkdRRw=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-411.min.js"}</script></body>
 </html>

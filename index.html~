@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tajpure</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/homepage.css' />
+  </head>
+  <body>
+
+      <div id="header">
+        <a class="header-item">About</a>
+        <a class="header-item">Archive</a>
+        <a class="header-item">Tags</a>
+      </div>
+
+      <div id="main">
+        <div id="article-list">
+          <div class="article-item">
+              <a class="article-title">Who are you?</a>
+              <pre class="article-content">I'm Taj</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="right">
+        <div class="right-item">This section is used for browsing the site conveniently.</div>
+      </div>
+
+      <div id="footer">
+          &copy;2014 taj Beta 1.0
+      </div>
+
+  </body>
+</html>

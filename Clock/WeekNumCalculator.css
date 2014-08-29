@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
 body {
+	margin:0px;
+}
+
+#main {
 	text-align:center;
 }
 

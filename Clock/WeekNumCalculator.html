@@ -3,11 +3,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>WeekNumCalculator</title>
-  <link href="WeekNumCalculator.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#loading{
+    background:none repeat scroll 0 0 #82FA58;
+    position: relative;
+    height: 2px;
+    width: 0px;
+    border-top:0px;
+    border-left:0px;
+}
+</style>
+<script type="text/javascript" src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+$("#loading").fadeIn(0);
+//$("#loading").css("background-color", "#82FA58");
+var load = function(width) {
+    $('#loading').animate({width: width +"%"}, 1); //减少#loadpercent的宽度，消失效果
+}
+
+for (var i = 0; i <= 100; i++) {
+    setTimeout('load(' + i + ');',1);
+}
+
+</script>
+<link href="WeekNumCalculator.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="week">如果你看到这句，就说明js挂了</div>
-<div id="date">如果你看到这句，就说明js挂了</div>
+<div id="loading"></div>
+
+<div id="main">
+	<div id="week">如果你看到这句，就说明js挂了</div>
+	<div id="date">如果你看到这句，就说明js挂了</div>
+</div>
 <script type="text/javascript" src="WeekNumCalculator.js"></script>
+<script type="text/javascript">
+setTimeout('$("#loading").fadeOut()',1);
+//$("#loading").css("background-color", "white");
+</script>
 </body>
 </html>

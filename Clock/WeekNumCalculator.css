@@ -5,8 +5,14 @@ body {
 }
 
 
-#symbol {
+#week {
 	position: relative;
 	margin-top: 270px;
+	font-size: 48px;
+}
+
+#date {
+	position: relative;
+	margin-top: 20px;
 	font-size: 48px;
 }

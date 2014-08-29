@@ -4,9 +4,14 @@
  * @since 2014-08-28 19:42:23
  */
 
-var appendWeekNum = function() {
-	var insertText = '下半年第' + getWeekNum() + '周';
-	document.getElementById('symbol').innerHTML = insertText;
+var weekNum = function() {
+	var insertText = 'The ' + getWeekNum() + 'th weeks of this year';
+	document.getElementById('week').innerHTML = insertText;
+};
+
+var date = function() {
+	var date = new Date();
+	document.getElementById('date').innerHTML = date.toString();
 };
 
 function getWeekNum(){
@@ -20,4 +25,6 @@ function getWeekNum(){
 	return Math.ceil(d /7)+1; 
 }
 
-appendWeekNum();
+weekNum();
+date();
+setInterval('date();', 500);

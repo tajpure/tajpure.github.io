@@ -5,7 +5,7 @@
  */
 
 var weekNum = function() {
-	var insertText = 'The ' + getWeekNum() + 'th weeks of this year';
+	var insertText = 'The ' + getWeekNum() + 'th week of this year';
 	document.getElementById('week').innerHTML = insertText;
 };
 

@@ -789,3 +789,8 @@ a:focus {
 .slide-ul li {
     margin-top: 20px;
 }
+
+.checked-image {
+    width:40px;
+    height:40px
+}

@@ -2,12 +2,12 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1024" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta 3="viewport" content="width=1024" />
+    <meta 3="apple-mobile-web-app-capable" content="yes" />
     <title>小型编译器的实现及可视化研究</title>
     
-    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
-    <meta name="author" content="Bartek Szopka" />
+    <meta 3="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta 3="author" content="Bartek Szopka" />
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
@@ -65,30 +65,8 @@
             <li>(5)  目标代码生成</li>
             <li>(6)  该系统的可视化实现</li>
         </ul>
-        <div></div>
     </div>
 
-
-    <div class="step slide" data-x="0" data-y="0">
-        <div class="color-bar">
-            <div class="color-bar-pink"></div>
-            <div class="color-bar-orange"></div>
-            <div class="color-bar-yellow"></div>
-            <div class="color-bar-green"></div>
-            <div class="color-bar-grey"></div>
-        </div>
-        <br><br><br>
-        <p><strong>研究方案:</strong><br><div style="margin-left: 16%;">完成一个小型语言的编译系统，包括:</div></p>
-        <ul class="slide-ul">
-            <li>(1)  词法分析</li>
-            <li>(2)  语法分析</li>
-            <li>(3)  语义分析</li>
-            <li>(4)  中间代码生成</li>
-            <li>(5)  目标代码生成</li>
-            <li>(6)  该系统的可视化实现</li>
-        </ul>
-        <div></div>
-    </div>
 
     <div class="step slide" data-x="1000" data-y="-1500">
         <div class="color-bar">
@@ -98,9 +76,226 @@
             <div class="color-bar-green"></div>
             <div class="color-bar-grey"></div>
         </div>
-        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your talk?</q>
+        <br><br>
+        <p><strong>以Scheme语言作为该课题要求的小型语言</strong></p><br>
+        <p><strong>为什么要使用Scheme？</strong></p><br>
+        <div style="margin-left: 2%;">Scheme是Lisp语言的一种方言，语言核心非常精简，是基于“S表达式”的语法。<br><br>
+        例如：<div style="margin-left: 4%;">(+ 1 1) <br> (display "hello world")</div><br>所有操作符都放在表达式最前面，不需要考虑运算符优先级，将Scheme程序转换成抽象语法树（AST）非常轻松。</div>
     </div>
 
+    <div class="step slide" data-x="1000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br><br>
+        <p><strong>使用Scala来开发编译器</strong></p><br>
+        <p><strong>为什么要使用Scala？</strong></p><br>
+        <div style="margin-left: 2%;">(1) 拥有强大的面向对象特性，便于扩展和维护；</div><br>
+        <div style="margin-left: 2%;">(2) 可以使用Java世界里海量的开源项目，节省精力；</div><br>
+        <div style="margin-left: 2%;">(3) 包含优秀的函数式语言特性，远离Java繁冗的数据处理；</div>
+    </div>
+
+    <div class="step slide" data-x="0" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br><br>
+        <p>使用<strong>LLVM</strong>作为编译器后端。</p><br>
+        <p><strong>LLVM的简单介绍：</strong></p><br>
+        <div style="margin-left: 2%;">Low Level Virtual Machine，是以C++编写而成构架编译器的框架系统。具体请查看：<a href="http://llvm.org/" target="_blank">http://llvm.org/</a></div><br>
+        <p>由于在Scala中可以直接调用Java库，因此我直接使用jllvm来使用LLVM。</p><br>
+        <div style="color: #DF0101; font-size: 25px;">注释：jllvm是一个开源的LLVM Bindings， 可以在基于JVM的语言里使用。地址：<a href="https://code.google.com/p/jllvm/" target="_blank">https://code.google.com/p/jllvm/</a></div>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>研究方案大概：</strong></p><br>
+        <div style="margin-left: 2%;">(1) 词法分析：对scheme源码进行Tokenize，将其转成一个个词法单元；
+        <image src="./checked.png" class="checked-image"></image></div><br>
+        <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；
+        <image src="./checked.png" class="checked-image"></image></div><br>
+        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码；</div><br>
+        <div style="margin-left: 2%;">(4) LLVM用于目标代码生成，运行时环境等阶段；</div><br>
+        <div style="margin-left: 2%;">(5) 将编译器各个处理阶段在图形界面上体现出来；</div>
+    </div>
+
+
+    <div class="step slide" data-x="-1000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法分析示例</strong></p><br>
+        <div>输入：
+            <pre style="font-size: 25px;">
+               (define location?
+                  (lambda (x)
+                  (or (register? x) (frame-var? x) (uvar? x))))
+            </pre>
+            输出：
+            <pre  style="font-size: 25px;">
+                (=>1 define=>2 location?=>3
+                    (=>1 lambda=>2 (=>1 x=>3 )=>1
+                        (=>1 or=>2 (=>1  register?=>3 x=>3 )=>1 
+                            (=>1 frame-var?=>3 x=>3 )=>1
+                            (=>1 uvar?=>3 x=>3 )=>1 )=>1 )=>1 )=>1
+            </pre>
+        </div>
+        <div style="color: #DF0101; font-size: 25px;">以上<strong>1:界定符，2:关键字, 3:变量</strong>。源文件被解析成由一个个Node组成的列表,每个<strong>*=>*</strong>都是一个node.toString的输出.</div>
+    </div>
+
+    <div class="step slide" data-x="0" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>语法分析</strong></p>
+        <div style="margin-left: 2%;">
+            <pre style="font-size: 25px;">目前的语法分析只完成了一些基础工作，变量，函数及其调用。下面是
+使用一个AST解释器对生成的AST进行解释的示例：
+       正确示例：
+        （1）乘2
+            (define double (lambda (x) (* x 2))) 
+            (display (double 2))
+            输出：4
+        （2）求倒数
+            (define reciprocal (lambda (x) (/ 1 x))) 
+            (display (reciprocal 2))
+           输出：1/2
+
+        错误示例：
+            (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
+           输出：row: 1 col: 32 Exception: incorrect arguments in call '/'
+            </pre>
+        </div><br>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>语义分析</strong></p><br>
+        <div style="margin-left: 2%;">
+            <pre>目前的语义分析只是加入了当二元运算施于int,float和fraction
+这三种类型时的自动类型转换。<br>
+        例如：
+            输入：(+ 1 1.0)
+            输出：2.0
+            </pre>
+        </div><br>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>LLVM IR的生成(1)</strong></p><br>
+        <div style="margin-left: 2%; font-size: 20px;">
+            <pre>由于目前由Scheme生成的LLVM IR还有问题，所以现在先不贴出示例，
+以下是几个在Scala里调用LLVM接口生成的IR示例：
+    (1) getelementptr 测试
+        ; ModuleID = 'test'
+        %ee = type { i64, i32 }
+        define i32 @fac(i32) {
+        entry:
+          %testHeapAllocation = alloca %ee
+          %hell = getelementptr %ee* %testHeapAllocation, i32 0, i32 0
+          store i32 2, i64* %hell
+          %hell1 = load i64* %hell
+          %hell2 = getelementptr %ee* %testHeapAllocation, i32 0, i32 0
+          ret i64 %hell1
+        }
+    运行LLVM提供的Execution Engine得出的结果：2
+            </pre>
+        </div><br>
+    </div>
+
+    <div class="step slide" data-x="0" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>LLVM IR的生成(2)</strong></p>
+        <div style="margin-left: 2%; font-size: 20px;">
+            <pre>(2) switch 测试
+        ; ModuleID = 'test'
+        define i32 @fac(i32) {
+        b:switch i32 2, label %b1 [
+            i32 1, label %b3
+            i32 2, label %b4
+          ]
+        b1:br label %b2                                            ; preds = %b
+        b2:ret i32 1                                               ; preds = %b3, %b1
+        b3:br label %b2                                            ; preds = %b
+        b4:ret i32 2                                               ; preds = %b
+        }
+运行LLVM提供的Execution Engine得出的结果：2
+            </pre>
+        </div>
+        <div style="color: #DF0101; font-size: 25px;">最后直接使用LLVM将生成的IR码转换成目标代码</div>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>接下来需要完成的工作：</strong></p>
+        <p></p>
+        <ul class="slide-ul">
+            <li>(1)  使用LLVM IR实现Clousure(函数闭包）</li>
+            <li>(2)  完成Scheme的continuation(call/cc)</li>
+            <li>(3)  支持Scheme尾递归</li>
+            <li>(4)  支持Scheme的控制流部分</li>
+            <li>(5)  支持Scheme的语法宏</li>
+            <li>(6)  *完成通过使用LLVM将生成的IR码转换成目标代码的部分</li>
+            <li>(7)  *实现编译器各个过程的可视化</li>
+            <li>(8)  完成这个编译器类型检查部分</li>
+        </ul><br>
+        <div style="color: #DF0101; font-size: 25px;">其中星号条目为必须实现的。</div>
+    </div>
+<!-- 
     <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
         <span class="try">then you should try</span>
         <h1>impress.js<sup>*</sup></h1>
@@ -136,14 +331,13 @@
 
     <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
         <p>one more thing...</p>
+    </div> -->
+
+    <div id="its-in-3d" class="step" data-x="-1200" data-y="1300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <h1>谢谢 ;)</h1>
     </div>
 
-    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
-        <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
-        <span class="footnote">* beat that, prezi ;)</span>
-    </div>
-
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    <div id="overview" class="step" data-x="-500" data-y="0" data-scale="5">
     </div>
 
 </div>

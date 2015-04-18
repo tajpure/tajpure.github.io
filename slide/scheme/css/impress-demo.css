@@ -215,7 +215,7 @@ a:focus {
 
     background-color: white;
     border: 1px solid rgba(0, 0, 0, .3);
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
 
     color: rgb(102, 102, 102);
@@ -701,3 +701,91 @@ a:focus {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+
+.sub-title {
+    margin-left: 56%;
+}
+
+.color-bar {
+    background:none repeat scroll 0 0 #FF0000;
+    position: relative;
+    border-radius: 5px;
+    height: 10px;
+    width: 115.5%;
+    border-top:0px;
+    border-left:0px;
+    margin-top: -40px;
+    margin-left: -60px;
+    z-index: 0;
+}
+.color-bar-pink {
+    background:none repeat scroll 0 0 #FA8258;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 14%;
+    z-index: 1;
+    float: left;
+}
+.color-bar-orange {
+    background:none repeat scroll 0 0 #FF4000;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}
+.color-bar-yellow {
+    background:none repeat scroll 0 0 #FFBF00;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}
+.color-bar-green {
+    background:none repeat scroll 0 0 #74DF00;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}
+.color-bar-grey {
+    background:none repeat scroll 0 0 #D8D8D8;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}    
+.color-bar-blue {
+    background:none repeat scroll 0 0 #81BEF7;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}
+.color-bar-purple {
+    background:none repeat scroll 0 0 #CC2EFA;
+    position: relative;
+    height: 10px;
+    width: 14%;
+    margin-left: 0px;
+    z-index: 1;
+    float: left;
+}
+
+.slide-ul {
+    margin-left: 16%;
+}
+
+.slide-ul li {
+    margin-top: 20px;
+}

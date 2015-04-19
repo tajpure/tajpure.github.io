@@ -129,7 +129,7 @@
         <image src="./checked.png" class="checked-image"></image></div><br>
         <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；
         <image src="./checked.png" class="checked-image"></image></div><br>
-        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码；</div><br>
+        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码(供LLVM使用的中间码)；<div style="color: #40FF00; font-size: 25px;">(正在进行)</div></div><br>
         <div style="margin-left: 2%;">(4) LLVM用于目标代码生成，运行时环境等阶段；</div><br>
         <div style="margin-left: 2%;">(5) 将编译器各个处理阶段在图形界面上体现出来；</div>
     </div>
@@ -174,9 +174,10 @@
         <br><br>
         <p><strong>语法分析</strong></p>
         <div style="margin-left: 2%;">
-            <pre style="font-size: 25px;">目前的语法分析只完成了一些基础工作，变量，函数及其调用。下面是
-使用一个AST解释器对生成的AST进行解释的示例：
-       正确示例：
+            <pre style="font-size: 25px;">目前的语法分析完成了变量定义，基础函数置入(如 +, -, *, / , display等)，
+函数申明，闭包转换及函数调用。下面是AST解释器对生成的AST进行
+解释的示例：
+       <strong>正确示例：</strong>
         （1）乘2
             (define double (lambda (x) (* x 2))) 
             (display (double 2))
@@ -185,8 +186,7 @@
             (define reciprocal (lambda (x) (/ 1 x))) 
             (display (reciprocal 2))
            输出：1/2
-
-        错误示例：
+        <strong>错误示例：</strong>
             (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
            输出：row: 1 col: 32 Exception: incorrect arguments in call '/'
             </pre>
@@ -204,7 +204,7 @@
         <br><br>
         <p><strong>语义分析</strong></p><br>
         <div style="margin-left: 2%;">
-            <pre>目前的语义分析只是加入了当二元运算施于int,float和fraction
+            <pre>目前的语义分析加入了当二元运算施于int,float和fraction
 这三种类型时的自动类型转换。<br>
         例如：
             输入：(+ 1 1.0)
@@ -224,7 +224,7 @@
         <br><br>
         <p><strong>LLVM IR的生成(1)</strong></p><br>
         <div style="margin-left: 2%; font-size: 20px;">
-            <pre>由于目前由Scheme生成的LLVM IR还有问题，所以现在先不贴出示例，
+            <pre>由于目前由Scheme生成的LLVM IR这一阶段还在进行中，所以现在先不贴出示例，
 以下是几个在Scala里调用LLVM接口生成的IR示例：
     (1) getelementptr 测试
         ; ModuleID = 'test'
@@ -284,15 +284,12 @@
         <p><strong>接下来需要完成的工作：</strong></p>
         <p></p>
         <ul class="slide-ul">
-            <li>(1)  使用LLVM IR实现Clousure(函数闭包）</li>
-            <li>(2)  完成Scheme的continuation(call/cc)</li>
-            <li>(3)  支持Scheme尾递归和宏</li>
-            <li>(4)  支持Scheme的其它部分</li>
-            <li>(5)  完成这个编译器类型检查部分</li>
-            <li>(6)  *完成通过使用LLVM将生成的IR码转换成目标代码的部分</li>
-            <li>(7)  *实现编译器各个过程的可视化</li>
+            <li>(1)  支持Scheme的continuation(call/cc),尾递归和宏</li>
+            <li>(2)  完成这个编译器类型检查部分</li>
+            <li>(3)  *完成通过使用LLVM将生成的IR码转换成目标代码的部分</li>
+            <li>(4)  *实现编译器各个过程的可视化</li>
         </ul><br>
-        <div style="color: #DF0101; font-size: 25px;">其中星号条目为必须实现的。</div>
+        <div style="color: #DF0101; font-size: 25px;">其中*条目为必须实现的。</div>
     </div>
 <!-- 
     <div id="title" class="step" data-x="0" data-y="0" data-scale="4">

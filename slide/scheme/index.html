@@ -174,9 +174,9 @@
         <br><br>
         <p><strong>语法分析</strong></p>
         <div style="margin-left: 2%;">
-            <pre style="font-size: 25px;">目前的语法分析完成了变量定义，基础函数置入(如 +, -, *, / , display等)，
-函数申明，闭包转换及函数调用。下面是AST解释器对生成的AST进行
-解释的示例：
+            <pre style="font-size: 25px;">目前的语法分析完成了变量定义(包括int, float, fraction, quote, char, String
+这些类型)，函数申明，闭包转换及函数调用。下面是AST解释器对生成的
+AST进行解释的示例：
        <strong>正确示例：</strong>
         （1）乘2
             (define double (lambda (x) (* x 2))) 
@@ -282,13 +282,13 @@
         </div>
         <br><br>
         <p><strong>接下来需要完成的工作：</strong></p>
-        <p></p>
+        <p></p><br>
         <ul class="slide-ul">
             <li>(1)  支持Scheme的continuation(call/cc),尾递归和宏</li>
             <li>(2)  完成这个编译器类型检查部分</li>
             <li>(3)  *完成通过使用LLVM将生成的IR码转换成目标代码的部分</li>
             <li>(4)  *实现编译器各个过程的可视化</li>
-        </ul><br>
+        </ul><br><br>
         <div style="color: #DF0101; font-size: 25px;">其中*条目为必须实现的。</div>
     </div>
 <!-- 

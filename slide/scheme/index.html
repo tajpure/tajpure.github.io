@@ -134,6 +134,45 @@
         <div style="margin-left: 2%;">(5) 将编译器各个处理阶段在图形界面上体现出来；</div>
     </div>
 
+    <div class="step slide" data-x="-2000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法分析的状态转移图</strong></p><br>
+        <image src="./lex01.png"></image>
+        <div style="color: #DF0101; font-size: 25px;">以上可以清晰地看出词法分析器的结构.</div>
+    </div>
+
+    <div class="step slide" data-x="-2000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法单元的抽象父类的结构</strong></p><br>
+        <div>Node:
+            <pre style="font-size: 25px;">
+
+  val file: String  // 用于标识该Node属于哪个文件
+  val start: Int   // 该Node在文件中的起始位置
+  val end: Int       // 结束位置
+  val row: Int       // 所在行数
+  val col: Int       // 所在列数
+
+  def interp(s: Scope): Value // 用于解释器求值
+  def typecheck(s: Scope): Value  // 用于类型检查
+  def codegen(s: Scope): org.jllvm.value.Value  // 用于中间代码生成
+            </pre>
+        </div>
+    </div>
 
     <div class="step slide" data-x="-1000" data-y="500">
         <div class="color-bar">
@@ -172,23 +211,21 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语法分析</strong></p>
+        <p><strong>语法分析</strong></p><br>
         <div style="margin-left: 2%;">
-            <pre style="font-size: 25px;">目前的语法分析完成了变量定义(包括int, float, fraction, quote, char, String
-这些类型)，函数申明，闭包转换及函数调用。下面是AST解释器对生成的
-AST进行解释的示例：
-       <strong>正确示例：</strong>
-        （1）乘2
-            (define double (lambda (x) (* x 2))) 
-            (display (double 2))
-            输出：4
-        （2）求倒数
-            (define reciprocal (lambda (x) (/ 1 x))) 
-            (display (reciprocal 2))
-           输出：1/2
-        <strong>错误示例：</strong>
-            (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
-           输出：row: 1 col: 32 Exception: incorrect arguments in call '/'
+            <pre style="font-size: 25px;">语法分析是对前面的词法分析生成的Node列表进行如下处理：
+            1，字面量(literal)Node直接返回本身；
+            例如这段代码：
+            else if (curNode.isInstanceOf[IntNum]) {
+              curNode.asInstanceOf[IntNum]
+            }
+            else if (curNode.isInstanceOf[FloatNum]) {
+              curNode.asInstanceOf[FloatNum]
+            }
+            else if (curNode.isInstanceOf[Char]) {
+              curNode.asInstanceOf[Char]
+            }
+            当前节点为字面量,则直接返回
             </pre>
         </div><br>
     </div>
@@ -202,15 +239,54 @@ AST进行解释的示例：
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语义分析</strong></p><br>
+        <p>
+            2，具名量(name)Node递归下降进行解析。<br>
+               例如：
+            <pre>
+            if (curNode.isInstanceOf[Name]) {
+              curNode.asInstanceOf[Name].id match {
+                case Constants.DEFINE => parseDefine(tuple)
+                case Constants.IF => parseIf(tuple)
+                case Constants.LET => parseAssign(tuple)
+                case Constants.LAMBDA => parseLambda(tuple)
+                case Constants.SEQ => parseBlock(tuple)
+                case default => parseCall(tuple)
+              }
+            }
+            会递归解析出相应的语法树
+            <pre>
+    目前的语法分析完成了变量定义，函数申明，闭包转换及
+    函数调用。</p>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br>
+        <p><pre>下面是AST解释器对生成的
+AST进行解释的示例：
+    <strong>正确示例：</strong>
+    （1）乘2
+        (define double (lambda (x) (* x 2))) 
+        (display (double 2))
+        输出：4
+    （2）求倒数
+        (define reciprocal (lambda (x) (/ 1 x))) 
+        (display (reciprocal 2))
+        输出：1/2
+    <strong>错误示例：</strong>
+        (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
+        输出：row: 1 col: 32 Exception: incorrect arguments in 
+        call '/'</pre></p><br>
         <div style="margin-left: 2%;">
-            <pre>目前的语义分析加入了当二元运算施于int,float和fraction
-这三种类型时的自动类型转换。<br>
-        例如：
-            输入：(+ 1 1.0)
-            输出：2.0
+            <pre>目前的语义分析加入了自动类型转换。例如：(+ 1 1.0) => 2.0
             </pre>
-        </div><br>
+        </div>
     </div>
 
     <div class="step slide" data-x="1000" data-y="1500">

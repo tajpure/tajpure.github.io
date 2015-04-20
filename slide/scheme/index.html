@@ -214,8 +214,8 @@
         <p><strong>语法分析</strong></p><br>
         <div style="margin-left: 2%;">
             <pre style="font-size: 25px;">语法分析是对前面的词法分析生成的Node列表进行如下处理：
-            1，字面量(literal)Node直接返回本身；
-            例如这段代码：
+            1，Literal (字面量) Node直接返回本身；
+            例如：
             else if (curNode.isInstanceOf[IntNum]) {
               curNode.asInstanceOf[IntNum]
             }
@@ -240,23 +240,23 @@
         </div>
         <br><br>
         <p>
-            2，具名量(name)Node递归下降进行解析。<br>
+            <pre>
+            2，Name (具名量) Node递归下降进行解析；
                例如：
+                if (curNode.isInstanceOf[Name]) {
+                  curNode.asInstanceOf[Name].id match {
+                    case Constants.DEFINE => parseDefine(tuple)
+                    case Constants.IF => parseIf(tuple)
+                    case Constants.LET => parseAssign(tuple)
+                    case Constants.LAMBDA => parseLambda(tuple)
+                    case Constants.SEQ => parseBlock(tuple)
+                    case default => parseCall(tuple)
+                  }
+                }
+                会递归解析出相应的语法树
             <pre>
-            if (curNode.isInstanceOf[Name]) {
-              curNode.asInstanceOf[Name].id match {
-                case Constants.DEFINE => parseDefine(tuple)
-                case Constants.IF => parseIf(tuple)
-                case Constants.LET => parseAssign(tuple)
-                case Constants.LAMBDA => parseLambda(tuple)
-                case Constants.SEQ => parseBlock(tuple)
-                case default => parseCall(tuple)
-              }
-            }
-            会递归解析出相应的语法树
-            <pre>
-    目前的语法分析完成了变量定义，函数申明，闭包转换及
-    函数调用。</p>
+    目前的语法分析已经完成了变量定义，函数申明，闭包转换
+    及函数调用。</p>
     </div>
 
     <div class="step slide" data-x="2000" data-y="500">
@@ -358,14 +358,13 @@ AST进行解释的示例：
         </div>
         <br><br>
         <p><strong>接下来需要完成的工作：</strong></p>
-        <p></p><br>
-        <ul class="slide-ul">
-            <li>(1)  支持Scheme的continuation(call/cc),尾递归和宏</li>
-            <li>(2)  完成这个编译器类型检查部分</li>
-            <li>(3)  *完成通过使用LLVM将生成的IR码转换成目标代码的部分</li>
-            <li>(4)  *实现编译器各个过程的可视化</li>
-        </ul><br><br>
-        <div style="color: #DF0101; font-size: 25px;">其中*条目为必须实现的。</div>
+        <p></p><br><br>
+        <pre>
+            (1)  完成通过使用LLVM将生成的IR码转换成目标代码的
+                 部分
+                 
+            (2)  实现编译器各个过程的可视化
+        </pre><br><br>
     </div>
     <div id="its-in-3d" class="step" data-x="-1200" data-y="1300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <h1>谢谢 ;)</h1>

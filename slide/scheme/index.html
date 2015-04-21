@@ -191,14 +191,14 @@
             </pre>
             输出：
             <pre  style="font-size: 25px;">
-                (=>1 define=>2 location?=>3
-                    (=>1 lambda=>2 (=>1 x=>3 )=>1
-                        (=>1 or=>2 (=>1  register?=>3 x=>3 )=>1 
-                            (=>1 frame-var?=>3 x=>3 )=>1
-                            (=>1 uvar?=>3 x=>3 )=>1 )=>1 )=>1 )=>1
+                (=>1 define=>2 location?=>2
+                    (=>1 lambda=>2 (=>1 x=>2 )=>1
+                        (=>1 or=>2 (=>1  register?=>2 x=>2 )=>1 
+                            (=>1 frame-var?=>2 x=>2 )=>1
+                            (=>1 uvar?=>2 x=>2 )=>1 )=>1 )=>1 )=>1
             </pre>
         </div>
-        <div style="color: #DF0101; font-size: 25px;">以上<strong>1:界定符，2:关键字, 3:变量</strong>。源文件被解析成由一个个Node组成的列表,每个<strong>*=>*</strong>都是一个node.toString的输出.</div>
+        <div style="color: #DF0101; font-size: 25px;">以上<strong>1:Delimeter (界定符)，2:Name (具名量)</strong>。源文件被解析成由一个个Node组成的列表,每个<strong>*=>*</strong>都是一个node.toString()的输出.</div>
     </div>
 
     <div class="step slide" data-x="0" data-y="500">

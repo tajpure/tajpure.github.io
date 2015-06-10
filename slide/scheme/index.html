@@ -5,14 +5,14 @@
     <meta 3="viewport" content="width=1024" />
     <meta 3="apple-mobile-web-app-capable" content="yes" />
     <title>小型编译器的实现及可视化研究</title>
-    
+
     <meta 3="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
     <meta 3="author" content="Bartek Szopka" />
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 
     <link href="css/impress-demo.css" rel="stylesheet" />
-    
+
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 </head>
@@ -120,11 +120,9 @@
         </div>
         <br><br>
         <p><strong>研究方案大概：</strong></p><br>
-        <div style="margin-left: 2%;">(1) 词法分析：对scheme源码进行Tokenize，将其转成一个个词法单元；
-        <image src="./checked.png" class="checked-image"></image></div><br>
-        <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；
-        <image src="./checked.png" class="checked-image"></image></div><br>
-        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码(供LLVM使用的中间码)；<div style="color: #40FF00; font-size: 25px;">(正在进行)</div></div><br>
+        <div style="margin-left: 2%;">(1) 词法分析：对scheme源码进行Tokenize，将其转成一个个词法单元；</div><br>
+        <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；</div><br>
+        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码(供LLVM使用的中间码)；</div><br>
         <div style="margin-left: 2%;">(4) LLVM用于目标代码生成，运行时环境等阶段；</div><br>
         <div style="margin-left: 2%;">(5) 将编译器各个处理阶段在图形界面上体现出来；</div>
     </div>
@@ -181,15 +179,15 @@
         <p><strong>词法分析示例</strong></p><br>
         <div>输入：
             <pre style="font-size: 25px;">
-               (define double 
+               (define double
                 (lambda (n) (+ n 2)))
             </pre>
             输出：
             <pre  style="font-size: 25px;">
-                (=>delimeter define=>name double=>name 
-                    (=>delimeter lambda=>name (=>delimeter n=>name )=>delimeter 
-                        (=>delimeter +=>name n=>name 2=>int )=>delimeter 
-                    )=>delimeter )=>delimeter 
+                (=>delimeter define=>name double=>name
+                    (=>delimeter lambda=>name (=>delimeter n=>name )=>delimeter
+                        (=>delimeter +=>name n=>name 2=>int )=>delimeter
+                    )=>delimeter )=>delimeter
             </pre>
         </div>
         <div style="color: #DF0101; font-size: 25px;">以上 <strong>Delimeter (界定符)，Name (具名量)，Int (整形)</strong>。源文件被解析成由一个个Node组成的列表,每个<strong>*=>*</strong>都是一个node.toString()的输出.</div>
@@ -262,19 +260,19 @@
         </div>
         <br>
         <p><pre>下面是AST解释器对生成的AST进行解释的示例：
-        
+
     <strong>正确示例：</strong>
     （1）乘2
-        (define double (lambda (x) (* x 2))) 
+        (define double (lambda (x) (* x 2)))
         (display (double 2))
         输出：4
     （2）求倒数
-        (define reciprocal (lambda (x) (/ 1 x))) 
+        (define reciprocal (lambda (x) (/ 1 x)))
         (display (reciprocal 2))
         输出：1/2
     <strong>错误示例：</strong>
         (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
-        输出：row: 1 col: 32 Exception: incorrect arguments in 
+        输出：row: 1 col: 32 Exception: incorrect arguments in
         call '/'</pre></p><br>
         <div style="margin-left: 2%;">
             <pre>目前的语义分析加入了自动类型转换。例如：(+ 1 1.0) => 2.0
@@ -369,7 +367,7 @@
 </div>
 
 <script>
-if ("ontouchstart" in document.documentElement) { 
+if ("ontouchstart" in document.documentElement) {
     document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
 }
 </script>

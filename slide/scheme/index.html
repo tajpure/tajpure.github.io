@@ -39,7 +39,9 @@
         <br>
         <br>
         <div class="sub-title">
-        <h3>Email:tajpure@gmail.com</h3>
+        <h3>班级：计科1103</h3>
+        <h3>导师：丁丁</h3>
+        <h3>姓名：陶佳轩</h3>
         </div>
     </div>
 
@@ -52,7 +54,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br><br>
-        <p><strong>研究内容:</strong><br><div style="margin-left: 16%;">完成一个小型语言的编译系统，包括:</div></p>
+        <p><strong>研究内容:</strong><br><div style="margin-left: 16%;">完成一个小型语言的编译系统，包括</div></p>
         <ul class="slide-ul">
             <li>(1)  词法分析</li>
             <li>(2)  语法分析</li>
@@ -102,10 +104,10 @@
             <div class="color-bar-green"></div>
             <div class="color-bar-grey"></div>
         </div>
-        <br><br><br>
+        <br><br>
         <p>使用<strong>LLVM</strong>作为编译器后端。</p><br>
         <p><strong>LLVM的简单介绍：</strong></p><br>
-        <div style="margin-left: 2%;">Low Level Virtual Machine，是以C++编写而成构架编译器的框架系统。具体请查看：<a href="http://llvm.org/" target="_blank">http://llvm.org/</a></div><br>
+        <div style="margin-left: 2%;">Low Level Virtual Machine，是以C++编写而成构架编译器的框架系统。现下新型语言如Rust、Swift等均使用LLVM作为编译器后端。具体请查看：<a href="http://llvm.org/" target="_blank">http://llvm.org/</a></div><br>
         <p>由于在Scala中可以直接调用Java库，因此我直接使用jllvm来使用LLVM。</p><br>
         <div style="color: #DF0101; font-size: 25px;">注释：jllvm是一个开源的LLVM Bindings， 可以在基于JVM的语言里使用。地址：<a href="https://code.google.com/p/jllvm/" target="_blank">https://code.google.com/p/jllvm/</a></div>
     </div>
@@ -119,15 +121,83 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>研究方案大概：</strong></p><br>
+        <p><strong>研究方案概述：</strong></p><br>
         <div style="margin-left: 2%;">(1) 词法分析：对scheme源码进行Tokenize，将其转成一个个词法单元；</div><br>
         <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；</div><br>
         <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码(供LLVM使用的中间码)；</div><br>
         <div style="margin-left: 2%;">(4) LLVM用于目标代码生成，运行时环境等阶段；</div><br>
-        <div style="margin-left: 2%;">(5) 将编译器各个处理阶段在图形界面上体现出来；</div>
+        <div style="margin-left: 2%;">(5) 将编译器各个处理阶段的数据在图形界面上体现出来；</div>
     </div>
 
     <div class="step slide" data-x="-2000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法分析</strong></p><br>
+        <div style="margin-left: 15%;">(1) 节点的结构；</div><br>
+        <div style="margin-left: 15%;">(2) 词法单元的类型；</div><br>
+        <div style="margin-left: 15%;">(3) 词法分析的状态转移图；</div><br>
+        <div style="margin-left: 15%;">(4) 词法分析示例；</div><br>
+    </div>
+
+    <div class="step slide" data-x="-3000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>节点的结构</strong></p><br>
+        <div>Node:
+            <pre style="font-size: 25px;">
+
+  val file: String  // 用于标识该Node属于哪个文件
+  val start: Int   // 该Node在文件中的起始位置
+  val end: Int       // 结束位置
+  val row: Int       // 所在行数
+  val col: Int       // 所在列数
+  def interp(s: Scope): Value // 用于解释器求值
+  def typecheck(s: Scope): Value  // 用于类型检查
+  def codegen(s: Scope): org.jllvm.value.Value  // 用于中间代码生成
+   <div style="color: #DF0101; font-size: 25px;">词法单元与语法单元均继承于该节点结构。</div>
+            </pre>
+        </div>
+    </div>
+
+    <div class="step slide" data-x="-4000" data-y="-500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法单元</strong></p><br>
+        <div>
+            <pre style="font-size: 25px;">
+        1) Bool 布尔值，#t代表true,#f代表false
+        2) CharNum 字符
+        3) IntNum 整数
+        4) FloatNum 浮点数
+        5) String 字符串
+        6) Symbol 符号，在Scheme里用来表示关键字、变量名或函数名。
+        7) Delimiter 界定符，例如用于分割程序的括号，继承于Node。
+        8) Quote 引用，使用quote或’标记的特殊词法单元。
+           包含一个Node类型的成员变量，用来记录quote关键字标记的单元。
+        </pre>
+        </div>
+        <div style="color: #DF0101; font-size: 25px;">以上词法单元均继承于Node，用于词法分析.</div>
+    </div>
+
+    <div class="step slide" data-x="-4000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -141,6 +211,31 @@
         <div style="color: #DF0101; font-size: 25px;">以上可以清晰地看出词法分析器的结构.</div>
     </div>
 
+    <div class="step slide" data-x="-3000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>词法分析示例</strong></p><br>
+        <div>输入：
+            <pre style="font-size: 25px;">
+               (define main (lambda () (display "hello world!")))
+            </pre>
+            输出：
+            <pre  style="font-size: 25px;">
+               List((=>Delimeter, define=>Symbol, main=>Symbol, (=>Delimeter, 
+               lambda=>Symbol, (=>Delimeter, )=>Delimeter, (=>Delimeter, 
+               display=>Symbol, "hello world!"=>String, )=>Delimeter, 
+               )=>Delimeter, )=>Delimeter)
+            </pre>
+        </div>
+        <div style="color: #DF0101; font-size: 25px;">以上 <strong>Delimeter (界定符)，Symbol (具名量)，String (字符串)</strong>。源文件被解析成由词法单元组成的列表,<strong>“=>”</strong>之后是词法单元的类型.</div>
+    </div>
+
     <div class="step slide" data-x="-2000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
@@ -150,20 +245,15 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法单元的抽象父类的结构</strong></p><br>
-        <div>Node:
-            <pre style="font-size: 25px;">
+        <p><strong>语法分析</strong></p><br>
+        <div>
+            <pre style="font-size: 25px; margin-left: 20px;">
+        1) 语法单元
 
-  val file: String  // 用于标识该Node属于哪个文件
-  val start: Int   // 该Node在文件中的起始位置
-  val end: Int       // 结束位置
-  val row: Int       // 所在行数
-  val col: Int       // 所在列数
+        2) 语法分析示例
 
-  def interp(s: Scope): Value // 用于解释器求值
-  def typecheck(s: Scope): Value  // 用于类型检查
-  def codegen(s: Scope): org.jllvm.value.Value  // 用于中间代码生成
-            </pre>
+        2) 对AST(抽象语法树)进行解释示例
+        </pre>
         </div>
     </div>
 
@@ -176,21 +266,24 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法分析示例</strong></p><br>
-        <div>输入：
+        <p><strong>语法单元</strong></p><br>
+        <div>
             <pre style="font-size: 25px;">
-               (define double
-                (lambda (n) (+ n 2)))
-            </pre>
-            输出：
-            <pre  style="font-size: 25px;">
-                (=>delimeter define=>name double=>name
-                    (=>delimeter lambda=>name (=>delimeter n=>name )=>delimeter
-                        (=>delimeter +=>name n=>name 2=>int )=>delimeter
-                    )=>delimeter )=>delimeter
-            </pre>
+        1) Block  
+            语句块，使用begin关键字标识。
+        2) Tuple 
+            元组，由括号括起来的节点列表，用于表示语句块或者函数
+            参数等形式。
+        3) Func 
+            函数，包含参数、函数体和父级块的词法域。
+        4) Call 函数调用，记录调用函数名和参数。
+        5) Define 
+            定义，用来定义变量或者函数。
+        6) If If条件控制语句
+        7) Let 过程绑定语句。
+        </pre>
         </div>
-        <div style="color: #DF0101; font-size: 25px;">以上 <strong>Delimeter (界定符)，Name (具名量)，Int (整形)</strong>。源文件被解析成由一个个Node组成的列表,每个<strong>*=>*</strong>都是一个node.toString()的输出.</div>
+        <div style="color: #DF0101; font-size: 25px;">以上词法单元均继承于Node，用于词法分析.</div>
     </div>
 
     <div class="step slide" data-x="0" data-y="500">
@@ -202,10 +295,10 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语法分析</strong></p><br>
+        <p><strong>语法分析示例</strong></p><br>
         <div style="margin-left: 2%;">
             <pre style="font-size: 25px;">语法分析是对前面的词法分析生成的Node列表进行如下处理：
-            1，Literal (字面量) Node直接返回本身；
+            1，非语法单元节点直接返回本身；
             例如：
             else if (curNode.isInstanceOf[IntNum]) {
               curNode.asInstanceOf[IntNum]
@@ -232,11 +325,12 @@
         <br><br>
         <p>
             <pre>
-            2，Name (具名量) Node递归下降进行解析；
-               例如：
-                if (curNode.isInstanceOf[Name]) {
-                  curNode.asInstanceOf[Name].id match {
-                    case Constants.DEFINE => parseDefine(tuple)
+    2，对语法单元节点递归下降进行解析；
+        例如：
+                if (curNode.isInstanceOf[Symbol]) {
+                  curNode.asInstanceOf[Symbol].id match {
+                    // 分别对应相应语法单元的解析方法
+                    case Constants.DEFINE => parseDefine(tuple) 
                     case Constants.IF => parseIf(tuple)
                     case Constants.LET => parseAssign(tuple)
                     case Constants.LAMBDA => parseLambda(tuple)
@@ -244,10 +338,9 @@
                     case default => parseCall(tuple)
                   }
                 }
-                会递归解析出相应的语法树
             <pre>
-    目前的语法分析已经完成了变量定义，函数申明，闭包转换
-    及函数调用。</p>
+    语法分析会根据传入的词法单元列表生成相应的抽象语法树，
+    这棵抽象语法树可以用来进行中间代码生成。</p>
     </div>
 
     <div class="step slide" data-x="2000" data-y="500">
@@ -258,8 +351,35 @@
             <div class="color-bar-green"></div>
             <div class="color-bar-grey"></div>
         </div>
+        <br><br>
+        <p><pre>下面选取一个最简单的解析函数作为示例：
+
+        def parseBlock(tuple: Tuple): Node = {
+            val elements: List[Node] = tuple.elements
+            val statements = parseList(elements.slice(1, elements.size))
+            new Block(statements, tuple)
+        }
+        </pre></p><br>
+        <div style="margin-left: 2%;">
+            <pre>在进行语法解析时，编译器会将词法分析生成的词法单元列表
+转成一个语法块形式。之后进行递归下降解析，上述示例为语
+法块的解析示例，对Tuple元组里的元素进行遍历解析，最后将
+其构造成一个Block语法单元输出。
+            </pre>
+        </div>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
         <br>
-        <p><pre>下面是AST解释器对生成的AST进行解释的示例：
+        <p><pre>    为了验证生成AST(抽象语法树)的正确性，下面是AST解释器
+对生成的AST进行解释的示例：
 
     <strong>正确示例：</strong>
     （1）乘2
@@ -274,8 +394,58 @@
         (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
         输出：row: 1 col: 32 Exception: incorrect arguments in
         call '/'</pre></p><br>
-        <div style="margin-left: 2%;">
-            <pre>目前的语义分析加入了自动类型转换。例如：(+ 1 1.0) => 2.0
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>语义分析说明</strong></p><br>
+        <div style="margin-left: 2%; font-size: 20px;">
+            <pre style="font-size:25px;">
+            1) 语义分析和中间代码生成在同一阶段进行。
+
+            2) 在进行中间代码生成时，会对抽象语法树进行语义分析。
+
+            3) 这里的语义分析主要是基础运算符的参数类型进行验证，
+               对于不满足条件的情况抛出异常。
+
+            4) 基础运算符由内建函数实现，在编译器初始化时将内建
+               函数存入顶级词法域，以便之后的调用。
+
+            5) 基础运算符都有自己限定的值类型，如果值类型不满足
+               基础运算符的要求，则抛出异常。
+            </pre>
+        </div><br>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>中间代码生成</strong></p>
+        <div style="margin-left: 2%; font-size: 25px;">
+            <pre>
+            1) 词法域的实现
+               词法域即静态作用域。
+
+            2) 实现codegen方法
+               为每种节点实现相应的codegen方法，这个方法用
+               来生成相应的中间代码形式。
+
+            3) 调用codegen方法
+                遍历调用抽象语法树节点的codegen方法，将结果输出
+               至指定输出。
             </pre>
         </div>
     </div>
@@ -289,25 +459,22 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>LLVM IR的生成</strong></p><br>
-        <div style="margin-left: 2%; font-size: 20px;">
-            <pre>目前由Scheme生成的LLVM IR这一阶段还在进行中，
-以下是几个在Scala里调用LLVM接口生成的IR示例：
-    (1) getelementptr 测试
-        ; ModuleID = 'test'
-        %ee = type { i64, i32 }
-        define i32 @fac(i32) {
-        entry:
-          %testHeapAllocation = alloca %ee
-          %hell = getelementptr %ee* %testHeapAllocation, i32 0, i32 0
-          store i32 2, i64* %hell
-          %hell1 = load i64* %hell
-          %hell2 = getelementptr %ee* %testHeapAllocation, i32 0, i32 0
-          ret i64 %hell1
-        }
-    运行LLVM提供的Execution Engine得出的结果：2
-            </pre>
-        </div><br>
+        <p><strong>词法域的实现</strong></p>
+        <div style="margin-left: 2%; font-size: 25px;">
+            <pre>
+
+            这里使用Block语句块的codegen实现作为示例：
+            def codegen(s: Scope): org.jllvm.value.Value = {
+              val curScope: Scope = new Scope(s)
+              s.setInnerScope(curScope)
+              statements.map {
+                node =>
+                  node.codegen(curScope)
+              }.last
+            }
+            </pre> 
+        <div style="color: #DF0101; font-size: 25px;"></div>
+        </div>
     </div>
 
     <div class="step slide" data-x="0" data-y="1500">
@@ -319,24 +486,22 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>LLVM IR的生成(2)</strong></p>
-        <div style="margin-left: 2%; font-size: 20px;">
-            <pre>(2) switch 测试
-        ; ModuleID = 'test'
-        define i32 @fac(i32) {
-        b:switch i32 2, label %b1 [
-            i32 1, label %b3
-            i32 2, label %b4
-          ]
-        b1:br label %b2                                            ; preds = %b
-        b2:ret i32 1                                               ; preds = %b3, %b1
-        b3:br label %b2                                            ; preds = %b
-        b4:ret i32 2                                               ; preds = %b
-        }
-运行LLVM提供的Execution Engine得出的结果：2
-            </pre>
+        <p><strong>实现codegen方法示例</strong></p>
+        <div style="margin-left: 2%; font-size: 25px;">
+            <pre>
+
+            这里使用Block语句块的codegen实现作为示例：
+            def codegen(s: Scope): org.jllvm.value.Value = {
+              val curScope: Scope = new Scope(s)
+              s.setInnerScope(curScope)
+              statements.map {
+                node =>
+                  node.codegen(curScope)
+              }.last
+            }
+            </pre> 
+        <div style="color: #DF0101; font-size: 25px;"></div>
         </div>
-        <div style="color: #DF0101; font-size: 25px;">最后直接使用LLVM将生成的IR码转换成目标代码</div>
     </div>
 
     <div class="step slide" data-x="-1000" data-y="1500">
@@ -348,15 +513,53 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>接下来需要完成的工作：</strong></p>
-        <p></p><br><br>
-        <pre>
-            (1)  完成通过使用LLVM将生成的IR码转换成目标代码的
-                 部分
+        <p><strong>调用codegen方法</strong></p>
+        <div style="margin-left: 2%; font-size: 25px;">
+            <pre>
 
-            (2)  实现编译器各个过程的可视化
-        </pre><br><br>
+            这里使用Block语句块的codegen实现作为示例：
+            def codegen(s: Scope): org.jllvm.value.Value = {
+              val curScope: Scope = new Scope(s)
+              s.setInnerScope(curScope)
+              statements.map {
+                node =>
+                  node.codegen(curScope)
+              }.last
+            }
+            </pre> 
+        <div style="color: #DF0101; font-size: 25px;"></div>
+        </div>
     </div>
+
+    <div class="step slide" data-x="-2000" data-y="1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>使用LLVM编译中间代码</strong></p>
+        <div style="margin-left: 2%; font-size: 25px;">
+            <pre>
+
+            这里使用Block语句块的codegen实现作为示例：
+            def codegen(s: Scope): org.jllvm.value.Value = {
+              val curScope: Scope = new Scope(s)
+              s.setInnerScope(curScope)
+              statements.map {
+                node =>
+                  node.codegen(curScope)
+              }.last
+            }
+            </pre> 
+        <div style="color: #DF0101; font-size: 25px;"></div>
+        </div>
+    </div>
+
+
+
     <div id="its-in-3d" class="step" data-x="-1200" data-y="1300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <h1>谢谢 ;)</h1>
     </div>

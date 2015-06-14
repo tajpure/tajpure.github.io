@@ -25,7 +25,7 @@
 
 <div id="impress">
 
-    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+    <div id="bored" class="step slide" data-x="-4000" data-y="-1500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div class="step slide" data-x="0" data-y="-1500">
+    <div class="step slide" data-x="-3000" data-y="-1500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -56,14 +56,63 @@
         <br><br><br>
         <p><strong>研究内容:</strong><br><div style="margin-left: 16%;">完成一个小型语言的编译系统，包括</div></p>
         <ul class="slide-ul">
-            <li>(1)  词法分析</li>
-            <li>(2)  语法分析</li>
-            <li>(3)  语义分析和中间代码生成</li>
-            <li>(4)  目标代码生成</li>
-            <li>(5)  该系统的可视化实现</li>
+            <li>(1)  词法分析；</li>
+            <li>(2)  语法分析；</li>
+            <li>(3)  语义分析和中间代码生成；</li>
+            <li>(4)  目标代码生成；</li>
+            <li>(5)  该系统的可视化实现；</li>
         </ul>
     </div>
 
+
+    <div class="step slide" data-x="-2000" data-y="-1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>该课题使用的源语言：Scheme</strong></p><br>
+        <p><strong>为什么要使用Scheme？</strong></p><br>
+        <div style="margin-left: 2%;">Scheme是Lisp语言的一种方言，语言核心非常精简，是基于“S表达式”的语法。<br><br>
+        例如：<div style="margin-left: 4%;">(+ 1 1) <br> (display "hello world")</div><br>所有操作符都放在表达式最前面，不需要考虑运算符优先级，将Scheme程序转换成抽象语法树（AST）非常轻松。</div>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="-1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>编译器开发语言：Scala</strong></p><br>
+        <p><strong>为什么要使用Scala？</strong></p><br>
+        <div style="margin-left: 2%;">* 拥有强大的面向对象特性，便于扩展和维护；</div><br>
+        <div style="margin-left: 2%;">* 可以使用Java世界里海量的开源项目，节省精力；</div><br>
+        <div style="margin-left: 2%;">* 包含优秀的函数式语言特性，远离Java繁冗的数据处理；</div><br><br>
+        <div style="color: #DF0101; font-size: 25px;">后面的编译器示例代码均为Scala。</div>
+    </div>
+
+
+    <div class="step slide" data-x="0" data-y="-1500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>编译器后端：LLVM</strong></p><br>
+        <p><strong>LLVM的简单介绍：</strong></p><br>
+        <div style="margin-left: 2%;">Low Level Virtual Machine，是以C++编写而成构架编译器的框架系统。现下新型语言如Rust、Swift等均使用LLVM作为编译器后端。具体请查看：<a href="http://llvm.org/" target="_blank">http://llvm.org/</a></div><br>
+        <p>由于在Scala中可以直接调用Java库，因此可以直接使用jllvm来使用LLVM。</p><br>
+        <div style="color: #DF0101; font-size: 25px;">注释：jllvm是一个开源的LLVM Bindings， 可以在基于JVM的语言里使用。地址：<a href="https://code.google.com/p/jllvm/" target="_blank">https://code.google.com/p/jllvm/</a></div>
+    </div>
 
     <div class="step slide" data-x="1000" data-y="-1500">
         <div class="color-bar">
@@ -74,62 +123,16 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>以Scheme语言作为该课题要求的小型语言</strong></p><br>
-        <p><strong>为什么要使用Scheme？</strong></p><br>
-        <div style="margin-left: 2%;">Scheme是Lisp语言的一种方言，语言核心非常精简，是基于“S表达式”的语法。<br><br>
-        例如：<div style="margin-left: 4%;">(+ 1 1) <br> (display "hello world")</div><br>所有操作符都放在表达式最前面，不需要考虑运算符优先级，将Scheme程序转换成抽象语法树（AST）非常轻松。</div>
-    </div>
-
-    <div class="step slide" data-x="1000" data-y="-500">
-        <div class="color-bar">
-            <div class="color-bar-pink"></div>
-            <div class="color-bar-orange"></div>
-            <div class="color-bar-yellow"></div>
-            <div class="color-bar-green"></div>
-            <div class="color-bar-grey"></div>
-        </div>
-        <br><br><br>
-        <p><strong>使用Scala来开发编译器</strong></p><br>
-        <p><strong>为什么要使用Scala？</strong></p><br>
-        <div style="margin-left: 2%;">(1) 拥有强大的面向对象特性，便于扩展和维护；</div><br>
-        <div style="margin-left: 2%;">(2) 可以使用Java世界里海量的开源项目，节省精力；</div><br>
-        <div style="margin-left: 2%;">(3) 包含优秀的函数式语言特性，远离Java繁冗的数据处理；</div>
-    </div>
-
-    <div class="step slide" data-x="0" data-y="-500">
-        <div class="color-bar">
-            <div class="color-bar-pink"></div>
-            <div class="color-bar-orange"></div>
-            <div class="color-bar-yellow"></div>
-            <div class="color-bar-green"></div>
-            <div class="color-bar-grey"></div>
-        </div>
-        <br><br>
-        <p>使用<strong>LLVM</strong>作为编译器后端。</p><br>
-        <p><strong>LLVM的简单介绍：</strong></p><br>
-        <div style="margin-left: 2%;">Low Level Virtual Machine，是以C++编写而成构架编译器的框架系统。现下新型语言如Rust、Swift等均使用LLVM作为编译器后端。具体请查看：<a href="http://llvm.org/" target="_blank">http://llvm.org/</a></div><br>
-        <p>由于在Scala中可以直接调用Java库，因此我直接使用jllvm来使用LLVM。</p><br>
-        <div style="color: #DF0101; font-size: 25px;">注释：jllvm是一个开源的LLVM Bindings， 可以在基于JVM的语言里使用。地址：<a href="https://code.google.com/p/jllvm/" target="_blank">https://code.google.com/p/jllvm/</a></div>
-    </div>
-
-    <div class="step slide" data-x="-1000" data-y="-500">
-        <div class="color-bar">
-            <div class="color-bar-pink"></div>
-            <div class="color-bar-orange"></div>
-            <div class="color-bar-yellow"></div>
-            <div class="color-bar-green"></div>
-            <div class="color-bar-grey"></div>
-        </div>
-        <br><br>
         <p><strong>研究方案概述：</strong></p><br>
-        <div style="margin-left: 2%;">(1) 词法分析：对scheme源码进行Tokenize，将其转成一个个词法单元；</div><br>
-        <div style="margin-left: 2%;">(2) 语法分析：使用自顶向下语法分析处理词法分析的输出；</div><br>
-        <div style="margin-left: 2%;">(3) 语法制导翻译：将生成的抽象语法树翻译成LLVM的IR码(供LLVM使用的中间码)；</div><br>
-        <div style="margin-left: 2%;">(4) LLVM用于目标代码生成，运行时环境等阶段；</div><br>
-        <div style="margin-left: 2%;">(5) 将编译器各个处理阶段的数据在图形界面上体现出来；</div>
+        <div style="margin-left: 2%;"> 一, 词法分析：根据scheme源码生成词法单元序列；</div><br>
+        <div style="margin-left: 2%;"> 二, 语法分析：根据词法单元序列生成抽象语法树；</div><br>
+        <div style="margin-left: 2%;"> 三, 语义分析：对运算符的参数类型进行检查；</div><br>
+        <div style="margin-left: 2%;"> 四, 中间代码生成：根据抽象语法树生成中间代码；</div><br>
+        <div style="margin-left: 2%;"> 五, 目标代码生成：将中间代码编译成平台相关的目标代码；</div><br>
+        <div style="margin-left: 2%;"> 六, 可视化实现：将以上阶段生成的数据在图形界面上表示出来；</div>
     </div>
 
-    <div class="step slide" data-x="-2000" data-y="-500">
+    <div class="step slide" data-x="2000" data-y="-1500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -138,14 +141,16 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法分析</strong></p><br>
-        <div style="margin-left: 15%;">(1) 节点的结构；</div><br>
-        <div style="margin-left: 15%;">(2) 词法单元的类型；</div><br>
-        <div style="margin-left: 15%;">(3) 词法分析的状态转移图；</div><br>
-        <div style="margin-left: 15%;">(4) 词法分析示例；</div><br>
+        <p><strong>一, 词法分析</strong></p><br>
+        <pre>    词法分析是将源程序文本转化成可供语法分析使用的词
+法单元序列的过程。主要内容如下：</pre><br>
+        <div style="margin-left: 5%;">(1) 节点的结构： 由于词法单元与语法单元均继承于该节点，因此首先对该节点的结构进行介绍；</div><br>
+        <div style="margin-left: 5%;">(2) 词法单元：介绍了词法单元的类型；</div><br>
+        <div style="margin-left: 5%;">(3) 词法分析的状态转移图；描述整个词法分析器的结构；</div><br>
+        <div style="margin-left: 5%;">(4) 词法分析结果示例；词法分析器实际结果的示例；</div><br>
     </div>
 
-    <div class="step slide" data-x="-3000" data-y="-500">
+    <div class="step slide" data-x="3000" data-y="-1500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -154,7 +159,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>节点的结构</strong></p><br>
+        <p><strong>(1) 节点的结构</strong></p><br>
         <div>Node:
             <pre style="font-size: 25px;">
 
@@ -166,12 +171,12 @@
   def interp(s: Scope): Value // 用于解释器求值
   def typecheck(s: Scope): Value  // 用于类型检查
   def codegen(s: Scope): org.jllvm.value.Value  // 用于中间代码生成
-   <div style="color: #DF0101; font-size: 25px;">词法单元与语法单元均继承于该节点结构。</div>
             </pre>
+        <div style="color: #DF0101; font-size: 25px;">词法单元与语法单元均继承于该节点，即都包含以上属性与方法。</div>
         </div>
     </div>
 
-    <div class="step slide" data-x="-4000" data-y="-500">
+    <div class="step slide" data-x="4000" data-y="-1500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -180,7 +185,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法单元</strong></p><br>
+        <p><strong>(2) 词法单元</strong></p><br>
         <div>
             <pre style="font-size: 25px;">
         1) Bool 布尔值，#t代表true,#f代表false
@@ -197,7 +202,7 @@
         <div style="color: #DF0101; font-size: 25px;">以上词法单元均继承于Node，用于词法分析.</div>
     </div>
 
-    <div class="step slide" data-x="-4000" data-y="500">
+    <div class="step slide" data-x="-4000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -206,12 +211,12 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法分析的状态转移图</strong></p><br>
+        <p><strong>(3) 词法分析的状态转移图</strong></p><br>
         <image src="./lex01.png"></image>
         <div style="color: #DF0101; font-size: 25px;">以上可以清晰地看出词法分析器的结构.</div>
     </div>
 
-    <div class="step slide" data-x="-3000" data-y="500">
+    <div class="step slide" data-x="-3000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -220,7 +225,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>词法分析示例</strong></p><br>
+        <p><strong>(4) 词法分析结果示例</strong></p><br>
         <div>输入：
             <pre style="font-size: 25px;">
                (define main (lambda () (display "hello world!")))
@@ -233,10 +238,10 @@
                )=>Delimeter, )=>Delimeter)
             </pre>
         </div>
-        <div style="color: #DF0101; font-size: 25px;">以上 <strong>Delimeter (界定符)，Symbol (具名量)，String (字符串)</strong>。源文件被解析成由词法单元组成的列表,<strong>“=>”</strong>之后是词法单元的类型.</div>
+        <div style="color: #DF0101; font-size: 25px;"><strong>Delimeter : 界定符，Symbol : 具名量，String : 字符串</strong>。源文件被解析成由词法单元组成的列表,<strong>“=>”</strong>之后是词法单元的类型.</div>
     </div>
 
-    <div class="step slide" data-x="-2000" data-y="500">
+    <div class="step slide" data-x="-2000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -245,19 +250,23 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语法分析</strong></p><br>
+        <p><strong>二, 语法分析</strong></p><br>
+        <pre>   进行语法检查、并构建由输入的单词组成的抽象语法树。
+主要内容如下：</pre><br>
         <div>
             <pre style="font-size: 25px; margin-left: 20px;">
-        1) 语法单元
+        (1) 语法单元：描述了语法单元的类型；
 
-        2) 语法分析示例
+        (2) 语法分析示例： 介绍了对于各种类型的节点，如何构建抽象
+        语法树；
 
-        2) 对AST(抽象语法树)进行解释示例
+        (3) 语法分析结果验证：通过实现一个抽象语法树解释器来对语
+        法分析生成的抽象语法树进行验证；
         </pre>
         </div>
     </div>
 
-    <div class="step slide" data-x="-1000" data-y="500">
+    <div class="step slide" data-x="-1000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -266,7 +275,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语法单元</strong></p><br>
+        <p><strong>(1) 语法单元</strong></p><br>
         <div>
             <pre style="font-size: 25px;">
         1) Block  
@@ -286,7 +295,7 @@
         <div style="color: #DF0101; font-size: 25px;">以上词法单元均继承于Node，用于词法分析.</div>
     </div>
 
-    <div class="step slide" data-x="0" data-y="500">
+    <div class="step slide" data-x="0" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -295,7 +304,7 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语法分析示例</strong></p><br>
+        <p><strong>(2) 语法分析示例</strong></p><br>
         <div style="margin-left: 2%;">
             <pre style="font-size: 25px;">语法分析是对前面的词法分析生成的Node列表进行如下处理：
             1，非语法单元节点直接返回本身；
@@ -314,7 +323,7 @@
         </div><br>
     </div>
 
-    <div class="step slide" data-x="1000" data-y="500">
+    <div class="step slide" data-x="1000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -343,7 +352,7 @@
     这棵抽象语法树可以用来进行中间代码生成。</p>
     </div>
 
-    <div class="step slide" data-x="2000" data-y="500">
+    <div class="step slide" data-x="2000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -369,7 +378,7 @@
         </div>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="500">
+    <div class="step slide" data-x="3000" data-y="-500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -378,25 +387,22 @@
             <div class="color-bar-grey"></div>
         </div>
         <br>
-        <p><pre>    为了验证生成AST(抽象语法树)的正确性，下面是AST解释器
-对生成的AST进行解释的示例：
+        <p><strong>(3)  语法分析结果验证</strong></p><br>
+        <p><pre>    为了验证生成抽象语法树的正确性，下面是通过实现各个
+节点的interp方法，对生成的抽象语法树进行解释的示例：
 
     <strong>正确示例：</strong>
-    （1）乘2
-        (define double (lambda (x) (* x 2)))
-        (display (double 2))
-        输出：4
-    （2）求倒数
+    （1）求倒数
         (define reciprocal (lambda (x) (/ 1 x)))
         (display (reciprocal 2))
-        输出：1/2
+        输出：1/2<br>
     <strong>错误示例：</strong>
         (define reciprocal (lambda (x) (/ 1 x))) (display (reciprocal 0))
         输出：row: 1 col: 32 Exception: incorrect arguments in
         call '/'</pre></p><br>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="1500">
+    <div class="step slide" data-x="-4000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -405,26 +411,27 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>语义分析说明</strong></p><br>
+        <p><strong>三, 语义分析</strong></p><br>
         <div style="margin-left: 2%; font-size: 20px;">
             <pre style="font-size:25px;">
-            1) 语义分析和中间代码生成在同一阶段进行。
+  由于此处的语义分析和中间代码生成是在同一阶段进行，因此这里只对语
+义分析作简单介绍：
 
-            2) 在进行中间代码生成时，会对抽象语法树进行语义分析。
+            1) 在进行中间代码生成时，会对抽象语法树进行语义分析；
 
-            3) 这里的语义分析主要是基础运算符的参数类型进行验证，
-               对于不满足条件的情况抛出异常。
+            2) 这里的语义分析主要是基础运算符的参数类型进行验证，对于不
+            满足条件的情况抛出异常；
 
-            4) 基础运算符由内建函数实现，在编译器初始化时将内建
-               函数存入顶级词法域，以便之后的调用。
+            3) 基础运算符由内建函数实现，在编译器初始化时将内建函数存入
+            顶级词法域，以便之后的调用；
 
-            5) 基础运算符都有自己限定的值类型，如果值类型不满足
-               基础运算符的要求，则抛出异常。
+            4) 基础运算符都有自己限定的值类型，如果值类型不满足基础运算
+            符的要求，则抛出异常；
             </pre>
         </div><br>
     </div>
 
-    <div class="step slide" data-x="2000" data-y="1500">
+    <div class="step slide" data-x="-3000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -433,13 +440,15 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>中间代码生成</strong></p>
+        <p><strong>四, 中间代码生成</strong></p><br>
         <div style="margin-left: 2%; font-size: 25px;">
+        <pre>    在进行了语法分析和语义分析的工作之后，编译程序将源程序变成一种
+内部表示形式，这种内部表示形式叫做中间语言或中间表示或中间代码。</pre><br>
             <pre>
             1) 词法域的实现
-               词法域即静态作用域。
+               词法域即静态作用域，用来保存当前作用域里的变量与值的绑定。
 
-            2) 实现codegen方法
+            2) codegen方法的实现
                为每种节点实现相应的codegen方法，这个方法用
                来生成相应的中间代码形式。
 
@@ -450,7 +459,7 @@
         </div>
     </div>
 
-    <div class="step slide" data-x="1000" data-y="1500">
+    <div class="step slide" data-x="-2000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -463,21 +472,22 @@
         <div style="margin-left: 2%; font-size: 25px;">
             <pre>
 
-            这里使用Block语句块的codegen实现作为示例：
-            def codegen(s: Scope): org.jllvm.value.Value = {
-              val curScope: Scope = new Scope(s)
-              s.setInnerScope(curScope)
-              statements.map {
-                node =>
-                  node.codegen(curScope)
-              }.last
-            }
+            1) 使用哈希表来保存当前环境里的数据。
+
+            2) 包含一个父词法域，用来保存父级词法域包含的数据。
+
+            3) 包含一个CodeGen对象，用来保存编译信息，可以用来生成中间
+            代码。
+
+            4) 定义相关了查找、保存、和修改变量的方法。
+
+            5) 在初始化最顶级词法域时，会将内建函数保存在词法域中。
             </pre> 
         <div style="color: #DF0101; font-size: 25px;"></div>
         </div>
     </div>
 
-    <div class="step slide" data-x="0" data-y="1500">
+    <div class="step slide" data-x="-1000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -486,25 +496,30 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>实现codegen方法示例</strong></p>
+        <p><strong>codegen方法的实现</strong></p>
         <div style="margin-left: 2%; font-size: 25px;">
             <pre>
-
             这里使用Block语句块的codegen实现作为示例：
+
             def codegen(s: Scope): org.jllvm.value.Value = {
               val curScope: Scope = new Scope(s)
-              s.setInnerScope(curScope)
               statements.map {
                 node =>
                   node.codegen(curScope)
               }.last
             }
+
+            该方法的参数Scope也就是词法域。由上例可知，在对语句块
+        进行中间代码生成的时候，会创建一个新的词法域。在创建新的
+        词法域时，会将当前词法域作为新词法域的父级词法域保存。最
+        后遍历调用语句块内所有节点，并将最后一个节点codegen方法
+        的值作为输出。
             </pre> 
         <div style="color: #DF0101; font-size: 25px;"></div>
         </div>
     </div>
 
-    <div class="step slide" data-x="-1000" data-y="1500">
+    <div class="step slide" data-x="0" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -517,21 +532,22 @@
         <div style="margin-left: 2%; font-size: 25px;">
             <pre>
 
-            这里使用Block语句块的codegen实现作为示例：
-            def codegen(s: Scope): org.jllvm.value.Value = {
-              val curScope: Scope = new Scope(s)
-              s.setInnerScope(curScope)
-              statements.map {
-                node =>
-                  node.codegen(curScope)
-              }.last
-            }
+        NativeLibrary.load()
+        val root = Parser.parse(file)
+        val scope: Scope = Scope.buildInitCompilerScope(new CodeGen(file))
+        root.codegen(scope)
+        scope.save(targetPath)
+
+      首先加载LLVM的动态连接库，之后会以JNI的方式调用LLVM的接口。
+    然后调用解析器，将源代码文本解析成抽象语法树，再构建一个顶级
+    词法域，传入抽象语法树的codegen方法。最后将产生的中间代码保
+    存至指定文件。
             </pre> 
         <div style="color: #DF0101; font-size: 25px;"></div>
         </div>
     </div>
 
-    <div class="step slide" data-x="-2000" data-y="1500">
+    <div class="step slide" data-x="1000" data-y="500">
         <div class="color-bar">
             <div class="color-bar-pink"></div>
             <div class="color-bar-orange"></div>
@@ -540,27 +556,59 @@
             <div class="color-bar-grey"></div>
         </div>
         <br><br>
-        <p><strong>使用LLVM编译中间代码</strong></p>
-        <div style="margin-left: 2%; font-size: 25px;">
+        <p>五, 目标代码生成</p><br>
+        <pre>   
+        * 目标代码生成是编译的最后一个阶段。目标代码生成器把
+        语法分析后或优化后的中间代码变换成目标代码；
+
+        * 使用的目标代码形式为平台相关的汇编代码；
+        
+        * 使用汇编代码编译器将其编译成可执行文件形式；
+</pre><br>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>使用LLVM提供的组件编译中间代码的示例</strong></p>
+        <div style="margin-left: 2%; font-size: 30px;">
             <pre>
 
-            这里使用Block语句块的codegen实现作为示例：
-            def codegen(s: Scope): org.jllvm.value.Value = {
-              val curScope: Scope = new Scope(s)
-              s.setInnerScope(curScope)
-              statements.map {
-                node =>
-                  node.codegen(curScope)
-              }.last
-            }
+        1) 对于生成的中间代码 demo.ll，可以直接使用lli demo.ll
+           进行解释执行
+
+        2) 使用llc demo.ll将其编译成平台相关的汇编代码 demo.s，
+
+        3) 对于这种汇编代码，可以直接使用相应编译器将其编译
+           成可执行文件。例如 gcc -o demo demo.s。
             </pre> 
-        <div style="color: #DF0101; font-size: 25px;"></div>
+        </div>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="500">
+        <div class="color-bar">
+            <div class="color-bar-pink"></div>
+            <div class="color-bar-orange"></div>
+            <div class="color-bar-yellow"></div>
+            <div class="color-bar-green"></div>
+            <div class="color-bar-grey"></div>
+        </div>
+        <br><br>
+        <p><strong>六, 可视化的实现</strong></p>
+        <div style="margin-left: 2%; font-size: 30px;"><br><br><br>
+            <a href="http://localhost:9000" target="_blank" style="margin-left: 20%; margin-top: 100px;">点击此处查看</a>
         </div>
     </div>
 
 
 
-    <div id="its-in-3d" class="step" data-x="-1200" data-y="1300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+    <div id="its-in-3d" class="step" data-x="-2200" data-y="1300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <h1>谢谢 ;)</h1>
     </div>
 
@@ -572,7 +620,16 @@
 <script>
 if ("ontouchstart" in document.documentElement) {
     document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
-}
+}    
+function keyUp(e) {   
+       var currKey=0,e=e||event;   
+       currKey=e.keyCode||e.which||e.charCode;   
+       var keyName = String.fromCharCode(currKey);   
+       if (currKey == 27)  {
+        document.getElementById("overview").click();
+       }
+}   
+document.onkeyup = keyUp; 
 </script>
 
 <script src="js/impress.js"></script>

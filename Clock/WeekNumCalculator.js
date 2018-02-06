@@ -22,7 +22,7 @@ function getWeekNum(){
 	var day2=date2.getDay();
 	if(day2==0) day2=7;
 	d = Math.round((date.getTime() - date2.getTime()+(day2-day1)*(24*60*60*1000)) / 86400000);  
-	return Math.ceil(d /7)+1; 
+	return Math.ceil(d / 7); 
 }
 
 weekNum();

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>lissajous</title>
+<style type="text/css">
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+#app {
+  position: relative;
+  max-width: 90vmin;
+}
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+canvas:first-child {
+  position: static;
+}
+</style>
+<body>
+    <div id="app" data-width="512">
+    <canvas></canvas>
+    </div>
+</body>
+
+<script type="text/javascript">
+  const size = +document.querySelector('#app').dataset.width
+  const canvas = document.querySelector('canvas')
+  canvas.width = size
+  canvas.height = size 
+  const ctx = canvas.getContext('2d')
+  ctx.translate(size / 2, size / 2)
+  ctx.strokeStyle = 'white'
+  ctx.lineCap = 'round'
+  const {
+    sin,
+    sqrt,
+    random,
+    PI,
+  } = Math
+  const A = size / 2 - 1
+  
+  class Lissajous {
+    k = 1.66;
+    fade = false;
+    constructor() {
+      this.setup()
+      this.draw()
+    }
+    setup = () => {
+      delete this.lastP
+      ctx.clearRect(-size / 2, -size / 2, size, size)
+      this._k = this.k
+      this.delta = 0.05 / sqrt(this._k)
+      this.phi = random() * 2 * PI
+      this.theta = 0
+    };
+    draw = () => {
+      if (this.fade) {
+        ctx.fade()
+      }
+      const p = [
+        sin(this.theta) * A,
+        sin(this._k * this.theta + this.phi) * A
+      ]
+      ctx.beginPath()
+      ctx.moveTo(...(this.lastP || p))
+      ctx.lineTo(...p)
+      ctx.stroke()
+  
+      this.lastP = p
+      this.theta += this.delta
+      requestAnimationFrame(this.draw)
+    };
+  }
+  
+  const lis = new Lissajous()
+  lis.setup()
+  lis.draw()
+  </script>
+</html>

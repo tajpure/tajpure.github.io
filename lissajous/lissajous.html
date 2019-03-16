@@ -32,84 +32,75 @@ canvas:first-child {
 </body>
 
 <script type="text/javascript">
-(function() {
-    var lastTime = 0;
-    var vendors = ['webkit', 'moz'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
-                                      window[vendors[x] + 'CancelRequestAnimationFrame'];
+  "use strict";
+
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var size = +document.querySelector('#app').dataset.width;
+var canvas = document.querySelector('canvas');
+canvas.width = size;
+canvas.height = size;
+var ctx = canvas.getContext('2d');
+ctx.translate(size / 2, size / 2);
+ctx.strokeStyle = 'white';
+ctx.lineCap = 'round';
+var sin = Math.sin,
+    sqrt = Math.sqrt,
+    random = Math.random,
+    PI = Math.PI;
+var A = size / 2 - 1;
+
+var Lissajous = function Lissajous() {
+  var _this = this;
+
+  _classCallCheck(this, Lissajous);
+
+  _defineProperty(this, "k", 1.66);
+
+  _defineProperty(this, "fade", false);
+
+  _defineProperty(this, "setup", function () {
+    delete _this.lastP;
+    ctx.clearRect(-size / 2, -size / 2, size, size);
+    _this._k = _this.k;
+    _this.delta = 0.05 / sqrt(_this._k);
+    _this.phi = random() * 2 * PI;
+    _this.theta = 0;
+  });
+
+  _defineProperty(this, "draw", function () {
+    if (_this.fade) {
+      ctx.fade();
     }
 
-    if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
-            var id = window.setTimeout(function() {
-                callback(currTime + timeToCall);
-            }, timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
-    }
-    if (!window.cancelAnimationFrame) {
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
-    }
-}());
-  const size = +document.querySelector('#app').dataset.width
-  const canvas = document.querySelector('canvas')
-  canvas.width = size
-  canvas.height = size 
-  const ctx = canvas.getContext('2d')
-  ctx.translate(size / 2, size / 2)
-  ctx.strokeStyle = 'white'
-  ctx.lineCap = 'round'
-  const {
-    sin,
-    sqrt,
-    random,
-    PI,
-  } = Math
-  const A = size / 2 - 1
-  
-  class Lissajous {
-    k = 1.66;
-    fade = false;
-    constructor() {
-      this.setup()
-      this.draw()
-    }
-    setup = () => {
-      delete this.lastP
-      ctx.clearRect(-size / 2, -size / 2, size, size)
-      this._k = this.k
-      this.delta = 0.05 / sqrt(this._k)
-      this.phi = random() * 2 * PI
-      this.theta = 0
-    };
-    draw = () => {
-      if (this.fade) {
-        ctx.fade()
-      }
-      const p = [
-        sin(this.theta) * A,
-        sin(this._k * this.theta + this.phi) * A
-      ]
-      ctx.beginPath()
-      ctx.moveTo(...(this.lastP || p))
-      ctx.lineTo(...p)
-      ctx.stroke()
-  
-      this.lastP = p
-      this.theta += this.delta
-      requestAnimationFrame(this.draw)
-    };
-  }
-  
-  const lis = new Lissajous()
-  lis.setup()
-  lis.draw()
+    var p = [sin(_this.theta) * A, sin(_this._k * _this.theta + _this.phi) * A];
+    ctx.beginPath();
+    ctx.moveTo.apply(ctx, _toConsumableArray(_this.lastP || p));
+    ctx.lineTo.apply(ctx, p);
+    ctx.stroke();
+    _this.lastP = p;
+    _this.theta += _this.delta;
+    requestAnimationFrame(_this.draw);
+  });
+
+  this.setup();
+  this.draw();
+};
+
+var lis = new Lissajous();
+lis.setup();
+lis.draw();
   </script>
 </html>

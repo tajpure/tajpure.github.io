@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 #app {
   position: relative;
@@ -34,73 +34,73 @@ canvas:first-child {
 <script type="text/javascript">
   "use strict";
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+  function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+  function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  function _classCallCheck(instance, Constructor) { if (!_instanceof(instance, Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var size = +document.querySelector('#app').dataset.width;
-var canvas = document.querySelector('canvas');
-canvas.width = size;
-canvas.height = size;
-var ctx = canvas.getContext('2d');
-ctx.translate(size / 2, size / 2);
-ctx.strokeStyle = 'white';
-ctx.lineCap = 'round';
-var sin = Math.sin,
-    sqrt = Math.sqrt,
-    random = Math.random,
-    PI = Math.PI;
-var A = size / 2 - 1;
+  var size = document.querySelector('#app').dataset.width;
+  var canvas = document.querySelector('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  var ctx = canvas.getContext('2d');
+  ctx.translate(size / 2, size / 2);
+  ctx.strokeStyle = 'white';
+  ctx.lineCap = 'round';
+  var sin = Math.sin,
+      sqrt = Math.sqrt,
+      random = Math.random,
+      PI = Math.PI;
+  var A = size / 2 - 1;
 
-var Lissajous = function Lissajous() {
-  var _this = this;
+  var Lissajous = function Lissajous() {
+    var _this = this;
 
-  _classCallCheck(this, Lissajous);
+    _classCallCheck(this, Lissajous);
 
-  _defineProperty(this, "k", 1.66);
+    _defineProperty(this, "k", 1.66);
 
-  _defineProperty(this, "fade", false);
+    _defineProperty(this, "fade", false);
 
-  _defineProperty(this, "setup", function () {
-    delete _this.lastP;
-    ctx.clearRect(-size / 2, -size / 2, size, size);
-    _this._k = _this.k;
-    _this.delta = 0.05 / sqrt(_this._k);
-    _this.phi = random() * 2 * PI;
-    _this.theta = 0;
-  });
+    _defineProperty(this, "setup", function () {
+      delete _this.lastP;
+      ctx.clearRect(-size / 2, -size / 2, size, size);
+      _this._k = _this.k;
+      _this.delta = 0.05 / sqrt(_this._k);
+      _this.phi = random() * 2 * PI;
+      _this.theta = 0;
+    });
 
-  _defineProperty(this, "draw", function () {
-    if (_this.fade) {
-      ctx.fade();
-    }
+    _defineProperty(this, "draw", function () {
+      if (_this.fade) {
+        ctx.fade();
+      }
 
-    var p = [sin(_this.theta) * A, sin(_this._k * _this.theta + _this.phi) * A];
-    ctx.beginPath();
-    ctx.moveTo.apply(ctx, _toConsumableArray(_this.lastP || p));
-    ctx.lineTo.apply(ctx, p);
-    ctx.stroke();
-    _this.lastP = p;
-    _this.theta += _this.delta;
-    requestAnimationFrame(_this.draw);
-  });
+      var p = [sin(_this.theta) * A, sin(_this._k * _this.theta + _this.phi) * A];
+      ctx.beginPath();
+      ctx.moveTo.apply(ctx, _toConsumableArray(_this.lastP || p));
+      ctx.lineTo.apply(ctx, p);
+      ctx.stroke();
+      _this.lastP = p;
+      _this.theta += _this.delta;
+      requestAnimationFrame(_this.draw);
+    });
 
-  this.setup();
-  this.draw();
-};
+    this.setup();
+    this.draw();
+  };
 
-var lis = new Lissajous();
-lis.setup();
-lis.draw();
-  </script>
+  var lis = new Lissajous();
+  lis.setup();
+  lis.draw();
+</script>
 </html>

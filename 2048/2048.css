@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #bbada0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#grid {
+  display: grid;  /* 使用CSS网格布局 */
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 网格由4列组成，每列的大小相同 */
+  grid-template-rows: 1fr 1fr 1fr 1fr; /* 网格由4行组成，每行的大小相同 */
+  grid-gap: 10px;  /* 设置网格的行间隔和列间隔 */
+  width: 400px;
+  height: 400px;
+  background-color: #bbada0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(238, 228, 218, 0.35);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(238, 228, 218, 0.3);
+  font-size: 2em;
+  color: #776e65;
+  border-radius: 5px;
+}
+
+#score {
+  position: absolute;
+  top: -60px;
+  width: 100%;
+  font-size: 30px;
+  color: #776e65;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: calc(100vh - 80px);
+            margin-bottom: 10px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <textarea id="jsonInput" placeholder="Enter JSON data..." oninput="formatJson()"></textarea>
+        </div>
+        <div class="column">
+            <pre><code id="formattedJson" class="json hljs"></code></pre>
+        </div>
+    </div>
+
+    <script>
+        function formatJson() {
+            var jsonInput = document.getElementById('jsonInput').value;
+            var formattedJson = '';
+
+            try {
+                var parsedJson = JSON.parse(jsonInput);
+                formattedJson = JSON.stringify(parsedJson, null, 4);
+            } catch (error) {
+                formattedJson = "Error: Invalid JSON";
+            }
+
+            document.getElementById('formattedJson').innerHTML = formattedJson;
+            hljs.highlightAll();
+        }
+    </script>
+</body>
+</html>

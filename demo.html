@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业2024年经营情况分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #F3F4F6;
+        }
+
+        .container {
+            max-width: 280mm;
+            margin: 0 auto;
+            padding: 15mm;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            min-height: 297mm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15mm;
+            padding: 8mm 0;
+            border-bottom: 1px solid lab(18.51% 0.24 -0.65);
+        }
+
+        /* 统一标题格式 */
+        .header h1 {
+            font-size: 2.2em;
+            color: #1F2937;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            color: #6B7280;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 8mm;
+            padding: 6mm;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+
+        /* 统一二级标题格式 */
+        .section h2 {
+            color: #1F2937;
+            font-size: 1.5em;
+            margin-bottom: 8mm;
+            font-weight: 600;
+            border-bottom: 2px solid #E5E7EB;
+            padding-bottom: 4mm;
+        }
+
+        /* 统一三级标题格式 */
+        .section h3 {
+            color: #374151;
+            font-size: 1.2em;
+            margin-bottom: 6mm;
+            margin-top: 6mm;
+            font-weight: 500;
+        }
+
+        /* 统一四级标题格式 */
+        .section h4 {
+            color: #4B5563;
+            font-size: 1.1em;
+            margin-bottom: 4mm;
+            margin-top: 4mm;
+            font-weight: 500;
+        }
+
+        /* 统一正文格式 */
+        .section p {
+            color: #374151;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 4mm;
+            text-align: justify;
+        }
+
+        .section ul {
+            color: #374151;
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 4mm;
+            margin-left: 20px;
+        }
+
+        .section li {
+            margin-bottom: 2mm;
+            color: #374151;
+        }
+
+        .section strong {
+            color: #1F2937;
+            font-weight: 600;
+        }
+
+
+        .chart-container {
+            background-color: white;
+            padding: 4mm;
+            border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            margin: 3mm 0;
+        }
+
+        .chart-title {
+            font-size: 0.9em;
+            color: hsl(240, 1%, 35%);
+            margin-bottom: 3mm;
+            text-align: center;
+            font-weight: 500;
+        }
+        /* 让左右并排的两个可视化保持统一高度 */
+        .equal-chart { width: 100%; height: 220px; }
+        .equal-chart canvas { width: 100% !important; height: 100% !important; display: block; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+            margin: 3mm 0;
+        }
+        .grid > div { min-width: 0; }
+        
+        /* 产品分类卡片样式优化 */
+        .product-categories-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .product-category {
+            transition: all 0.3s ease;
+        }
+        
+        .product-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .product-item {
+            transition: all 0.2s ease;
+        }
+        
+        .product-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2mm;
+            margin: 3mm 0;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6mm;
+            border-radius: 8px;
+            margin-bottom: 8mm;
+        }
+        
+        .executive-summary h2 {
+            color: white;
+            margin-bottom: 4mm;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 3mm;
+            margin: 4mm 0;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3mm;
+            border-radius: 6px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 2mm;
+        }
+        
+        .metric-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        .risk-item {
+            background-color: white;
+            padding: 3mm;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            font-size: 0.8em;
+        }
+
+
+        .risk-title {
+            font-weight: 600;
+            margin-bottom: 2mm;
+            color: #374151;
+            font-size: 0.9em;
+        }
+
+        .risk-level {
+            font-size: 0.8em;
+            margin-bottom: 1mm;
+        }
+
+        .risk-level.high {
+            color: #e74c3c;
+        }
+
+        .risk-level.medium {
+            color: #f39c12;
+        }
+
+        .risk-level.low {
+            color: #22C55E;
+        }
+
+        .risk-departments {
+            font-size: 0.7em;
+            color: #6B7280;
+        }
+
+        .conclusion {
+            background-color: #ecf0f1;
+            padding: 4mm;
+            border-radius: 4px;
+        }
+
+        .conclusion h3 {
+            color: #EA580C;
+            margin-bottom: 4mm;
+            font-size: 1.1em;
+        }
+
+        .conclusion p {
+            margin-bottom: 3mm;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        .conclusion ul {
+            margin-bottom: 3mm;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background-color: #F3F4F6;
+            padding: 3mm;
+            border-radius: 3px;
+            margin: 3mm 0;
+            font-size: 0.9em;
+        }
+
+        .tree-map {
+            width: 100%;
+            height: 200px;
+        }
+
+        .treemap-rect {
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+
+        .treemap-text {
+            font-size: 10px;
+            fill: #333;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .compact-text {
+            font-size: 0.8em;
+            line-height: 1.3;
+            margin-bottom: 2mm;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .risk-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>冲浪运动装备企业2024年经营情况分析报告</h1>
+            <div class="subtitle">从传统冲浪板向动力冲浪板转型的战略分析</div>
+        </div>
+
+        <!-- 第一分段：公司发展阶段分析 -->
+        <div class="section">
+            <h2>一、公司发展阶段分析</h2>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8mm; align-items: start;">
+                <!-- 企业发展曲线 - 占三分之二宽度 -->
+                <div class="chart-container" style="overflow: visible; padding: 6mm;">
+                    <div class="chart-title">企业发展曲线</div>
+                    <div style="position: relative; width: 100%; height: 350px;">
+                            <canvas id="developmentCurve" style="width: 100%; height: 100%;"></canvas>
+                        </div>
+                    </div>
+                
+                <!-- 当前企业发展阶段诊断 - 占三分之一宽度 -->
+                <div class="development-analysis" style="margin-top: 3mm; padding: 6mm; background-color: #F3F4F6; border-radius: 8px; height:95%;">
+                    <h4>当前企业发展阶段诊断</h4>
+                    <p>
+                        <strong>发展阶段定位：</strong>当前企业正处于从传统冲浪板向动力冲浪板转型的关键阶段，在发展曲线中位于"成长期→成熟期"的过渡位置。
+                        <br/><br/>
+                        <strong>双重特征分析：</strong>
+                        <br/>• <strong>成长期特征</strong>：JS动力板系列销售快速增长，市场认可度提升
+                        <br/>• <strong>成熟期特征</strong>：SL传统板市场地位稳固，现金流稳定
+                        <br/><br/>
+                        <strong>战略重点：</strong>采用"双轮驱动"策略，巩固传统产品优势的同时推进动力板发展，实现平稳过渡和持续增长。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二分段：核心产品情况分析 -->
+        <div class="section">
+            <h2>二、核心产品情况分析</h2>
+            
+
+            <div class="product-matrix">
+                <h3>产品战略分析</h3>
+                
+                <!-- 产品分析图表 - 并排展示 -->
+                <div class="grid" style="gap: 8mm; margin-bottom: 8mm;">
+                    <!-- 波士顿矩阵战略定位图 -->
+                    <div class="chart-container" style="padding: 6mm;">
+                        <div class="chart-title">产品组合战略定位图</div>
+                        <div style="position: relative; width: 100%; height: 400px;">
+                            <canvas id="bostonMatrix" style="width: 100%; height: 100%;"></canvas>
+                            
+                            <!-- 象限标签 -->
+                            <div style="position: absolute; top: 22px; left: 64px; background: rgba(22, 160, 133, 0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">
+                                问题产品
+                            </div>
+                            <div style="position: absolute; top: 22px; right: 22px; background: rgba(52, 152, 219, 0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">
+                                明星产品
+                            </div>
+                            <div style="position: absolute; bottom: 90px; left: 64px; background: rgba(149, 165, 166, 0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">
+                                瘦狗产品
+                            </div>
+                            <div style="position: absolute; bottom: 90px; right: 22px; background: rgba(39, 174, 96, 0.9); color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">
+                                金牛产品
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tree Map 收入结构分布图 -->
+                    <div class="chart-container" style="padding: 6mm;">
+                        <div class="chart-title">产品收入占比分布图</div>
+                        <div style="position: relative; width: 100%; height: 400px;">
+                            <div id="treemap" style="width: 100%; height: 100%;"></div>
+                        </div>
+                        <div style="margin-top: 4mm; font-size: 0.8em; color: #6B7280; text-align: center;">
+                            <strong>图表说明：</strong>矩形面积代表收入占比
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 战略洞察 - 占满一整行 -->
+                <div style="margin-bottom: 8mm;">
+                    <div class="product-insights" style="padding: 6mm; background: #F3F4F6; border-radius: 8px;">
+                        <h4>波士顿矩阵战略洞察</h4>
+                        <div style="margin-bottom: 4mm;">
+                            <strong>金牛产品策略</strong>
+                            <p>SL动力板-Sport、SL动力板-Master、IR动力板-Long和IR动力板-EX是现金流支柱，应优化运营效率，为其他产品发展提供资金支持。这些产品市场份额高但增长率较低，需要维持稳定运营。</p>
+                        </div>
+                        <div style="margin-bottom: 4mm;">
+                            <strong>问题产品策略</strong>
+                            <p>JS动力板-Sport 2、JS动力板-Race 2、JS动力板-Electric 2和JS动力板-Titanium 2具有高增长潜力但市场份额较低，需要选择性投资，重点培育电动版的未来市场，同时提升其他产品的市场占有率。</p>
+                        </div>
+                        <div style="padding-top: 4mm; border-top: 1px solid rgba(255,255,255,0.3);">
+                            <strong>整体资源配置建议：</strong>
+                            <p>
+                                70%资源维持金牛产品稳定现金流，30%培育问题产品中的高潜力产品，重点投资电动版和运动版系列
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三分段：战略建议与总结 -->
+        <div class="section">
+            <h2>三、战略建议与总结</h2>
+            
+            <p>
+                <strong>核心结论：</strong>企业已成功实现从传统冲浪板向动力冲浪板的初步转型，JS动力板系列贡献47%收入，显示转型战略有效。当前处于"成长期→成熟期"过渡阶段，需要在保持增长动力的同时提升运营效率。
+            </p>
+
+            <h4>SWOT分析总结：</h4>
+            <div class="grid" style="margin: 4mm 0;">
+                <div>
+                    <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px; margin-bottom: 2mm;">
+                        <strong>优势 (Strengths)</strong>
+                        <ul>
+                            <li>动力板技术领先</li>
+                            <li>品牌认知度高</li>
+                            <li>产品线丰富</li>
+                        </ul>
+                    </div>
+                    <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px;">
+                        <strong>机会 (Opportunities)</strong>
+                        <ul>
+                            <li>沿海二线城市潜力巨大</li>
+                            <li>电动化趋势</li>
+                            <li>体验经济兴起</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px; margin-bottom: 2mm;">
+                        <strong>劣势 (Weaknesses)</strong>
+                        <ul>
+                            <li>运营效率下降</li>
+                            <li>成本控制待优化</li>
+                            <li>传统产品增长放缓</li>
+                        </ul>
+                    </div>
+                    <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px;">
+                        <strong>威胁 (Threats)</strong>
+                        <ul>
+                            <li>市场竞争加剧</li>
+                            <li>技术更新换代快</li>
+                            <li>原材料成本上涨</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h4>战略重点与行动计划：</h4>
+            <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px; margin-bottom: 2mm;" >
+                <div>
+                    <p><strong>1. 求增长策略</strong></p>
+                    <ul>
+                        <li>加大JS动力板-Sport和Titanium的市场推广投入</li>
+                        <li>建立专业经销商网络，重点布局沿海二线城市</li>
+                        <li>加强电动动力板技术研发，抢占环保趋势先机</li>
+                        <li>与冲浪俱乐部、水上运动中心建立战略合作</li>
+                    </ul>
+                </div>
+                <div>
+                    <p><strong>2. 提效率策略</strong></p>
+                    <ul>
+                        <li>优化SL冲浪板系列生产流程，提升自动化水平</li>
+                        <li>实施精益库存管理，提高周转率至6倍以上</li>
+                        <li>建立数字化运营体系，降低管理成本</li>
+                        <li>优化供应链布局，降低采购成本5%</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>预期目标（2025年）：</h4>
+            <div style="background: #F3F4F6; padding: 3mm; border-radius: 4px; margin-bottom: 2mm;" >  
+                <ul>
+                    <li>ROE提升至16%，资产周转率回升至1.5倍</li>
+                    <li>动力板收入占比达到60%，毛利率稳定在40%以上</li>
+                    <li>覆盖沿海二线城市布局，新增经销商网点50个</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 企业发展曲线图 - 优化版本
+        const developmentCtx = document.getElementById('developmentCurve').getContext('2d');
+        
+        new Chart(developmentCtx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: '企业成长曲线',
+                    // 优化的S型曲线数据点
+                    data: [
+                        { x: 0.00, y: 2 },   // 初创起步 - 更低起点
+                        { x: 0.25, y: 7 },   // 初创期缓慢增长
+                        { x: 0.50, y: 13 },  // 初创期缓慢增长
+                        { x: 0.75, y: 20 },  // 初创期缓慢增长
+                        { x: 1.00, y: 28 },  // 成长期开始加速
+                        { x: 1.25, y: 37 },  // 成长期快速增长
+                        { x: 1.50, y: 47 },  // 成长期快速增长
+                        { x: 1.75, y: 60 },  // 成长期快速增长
+                        { x: 2.00, y: 73 },  // 成长期高点
+                        { x: 2.25, y: 86 },  // 成熟期开始 - 平缓
+                        { x: 2.50, y: 95 },  // 成熟期峰值 - 平缓
+                        { x: 2.75, y: 98 },  // 成熟期平缓
+                        { x: 3.00, y: 95 },  // 成熟期平缓
+                        { x: 3.25, y: 88 },  // 成熟期平缓
+                        { x: 3.50, y: 78 },  // 衰退期开始加速
+                        { x: 3.75, y: 60 },  // 衰退期快速下降
+                        { x: 3.90, y: 36 },  // 衰退期快速下降
+                        { x: 4.00, y: 20 }   // 衰退期低点
+                    ],
+                    parsing: false,
+                    borderColor: 'rgba(22, 160, 133, 1)',
+                    backgroundColor: function(context) {
+                        const chart = context.chart;
+                        const {ctx, chartArea} = chart;
+                        if (!chartArea) return null;
+                        
+                        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                        gradient.addColorStop(0, 'rgba(22, 160, 133, 0.05)');
+                        gradient.addColorStop(0.5, 'rgba(22, 160, 133, 0.15)');
+                        gradient.addColorStop(1, 'rgba(22, 160, 133, 0.3)');
+                        return gradient;
+                    },
+                    borderWidth: 4,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 8,
+                    pointHoverBackgroundColor: '#3B82F6',
+                    pointHoverBorderColor: '#2563EB',
+                    pointHoverBorderWidth: 3
+                }, {
+                    label: '当前阶段标记',
+                    // 当前位置标记点
+                    data: [{ x: 1.8, y: 64 }],
+                    parsing: false,
+                    borderColor: 'transparent',
+                    backgroundColor: 'transparent',
+                    borderWidth: 0,
+                    pointRadius: 12,
+                    pointHoverRadius: 15,
+                    pointBackgroundColor: '#3B82F6',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 3,
+                    showLine: false,
+                    pointStyle: 'circle'
+                }, {
+                    label: '当前阶段辅助线',
+                    // 垂直辅助线
+                    data: [{ x: 1.8, y: 0 }, { x: 1.8, y: 64 }],
+                    parsing: false,
+                    borderColor: 'rgba(231, 76, 60, 0.6)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [8, 4],
+                    fill: false,
+                    pointRadius: 0,
+                    tension: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: true,
+                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#2563EB',
+                        borderWidth: 2,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            title: function(context) {
+                                const x = context[0].parsed.x;
+                                if (x < 1) return '成长期';
+                                if (x < 2) return '成熟期';
+                                return '衰退期';
+                            },
+                            label: function(context) {
+                                if (context.datasetIndex === 1) {
+                                    return '当前企业位置';
+                                }
+                                return `发展指数: ${context.parsed.y.toFixed(1)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '发展指数',
+                            font: { 
+                                size: 14,
+                                weight: '600',
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#374151'
+                        },
+                        ticks: {
+                            font: { 
+                                size: 12,
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#6B7280',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(149, 165, 166, 0.2)',
+                            lineWidth: 1
+                        }
+                    },
+                    x: {
+                        type: 'linear',
+                        min: 0,
+                        max: 4,
+                        title: {
+                            display: true,
+                            text: '企业发展阶段',
+                            font: { 
+                                size: 14,
+                                weight: '600',
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#374151'
+                        },
+                        ticks: {
+                            stepSize: 0.5,
+                            font: { 
+                                size: 12,
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#6B7280',
+                            callback: function(value) {
+                                if (value === 0.5) return '初创期';
+                                if (value === 1.5) return '成长期';
+                                if (value === 2.5) return '成熟期';
+                                if (value === 3.5) return '衰退期';
+                                return '';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(149, 165, 166, 0.2)',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+
+        // 波士顿矩阵图表
+        const bostonCtx = document.getElementById('bostonMatrix').getContext('2d');
+        const bostonChart = new Chart(bostonCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: '问题产品',
+                    data: [
+                        {x: 3, y: 32, product: 'JS动力板-Electric 2'},
+                        {x: 5, y: 30, product: 'JS动力板-Sport 2'},
+                        {x: 7, y: 28, product: 'JS动力板-Titanium 2'},
+                        {x: 4, y: 25, product: 'JS动力板-Race 2'}
+                    ],
+                    backgroundColor: 'rgba(22, 160, 133, 0.8)',
+                    borderColor: '#3B82F6',
+                    pointRadius: 12,
+                    pointHoverRadius: 15,
+                    pointBorderWidth: 3,
+                    pointBorderColor: '#ffffff'
+                }, {
+                    label: '金牛产品',
+                    data: [
+                        {x: 22, y: 6, product: 'SL动力板-Sport'},
+                        {x: 18, y: 8, product: 'SL动力板-Master'},
+                        {x: 15, y: 4, product: 'IR动力板-Long'},
+                        {x: 20, y: 12, product: 'IR动力板-EX'}
+                    ],
+                    backgroundColor: 'rgba(39, 174, 96, 0.8)',
+                    borderColor: '#22C55E',
+                    pointRadius: 15,
+                    pointHoverRadius: 18,
+                    pointBorderWidth: 3,
+                    pointBorderColor: '#ffffff'
+                }, {
+                    label: '垂直分界线',
+                    // 垂直十字轴 (市场份额 = 12.5%)
+                    data: [{ x: 12.5, y: 0 }, { x: 12.5, y: 40 }],
+                    parsing: false,
+                    borderColor: 'rgba(52, 73, 94, 0.8)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    borderDash: [0],
+                    fill: false,
+                    pointRadius: 0,
+                    tension: 0,
+                    showLine: true,
+                    hidden: false // 在图例中隐藏
+                }, {
+                    label: '水平分界线',
+                    // 水平十字轴 (增长率 = 15%)
+                    data: [{ x: 0, y: 20 }, { x: 25, y: 20 }],
+                    parsing: false,
+                    borderColor: 'rgba(52, 73, 94, 0.8)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    borderDash: [0],
+                    fill: false,
+                    pointRadius: 0,
+                    tension: 0,
+                    showLine: true,
+                    hidden: false // 在图例中隐藏
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { 
+                                size: 12,
+                                family: 'Microsoft YaHei'
+                            },
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(44, 62, 80, 0.95)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#2563EB',
+                        borderWidth: 2,
+                        cornerRadius: 8,
+                        displayColors: true,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].raw.product;
+                            },
+                            label: function(context) {
+                                return [
+                                    `市场份额: ${context.parsed.x}%`,
+                                    `市场增长率: ${context.parsed.y}%`,
+                                    `分类: ${context.dataset.label}`
+                                ];
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: {
+                            display: true,
+                            text: '相对市场份额 (%)',
+                            font: { 
+                                size: 14,
+                                weight: '600',
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#374151'
+                        },
+                        min: 0,
+                        max: 25,
+                        ticks: {
+                            font: { 
+                                size: 11,
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#6B7280',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(149, 165, 166, 0.3)',
+                            lineWidth: 1,
+                            drawOnChartArea: true
+                        },
+                        // 添加分界线
+                        afterDataLimits: function(scale) {
+                            // 在x=12.5处添加垂直分界线
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '市场增长率 (%)',
+                            font: { 
+                                size: 14,
+                                weight: '600',
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#374151'
+                        },
+                        min: 0,
+                        max: 40,
+                        ticks: {
+                            font: { 
+                                size: 11,
+                                family: 'Microsoft YaHei'
+                            },
+                            color: '#6B7280',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(149, 165, 166, 0.3)',
+                            lineWidth: 1,
+                            drawOnChartArea: true
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'point'
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+
+
+        // Tree Map 产品收入结构图表
+        const treemapData = [
+            {name: "JS动力板-Sport 2", value: 30, color: "#3B82F6", series: "JS系列"},
+            {name: "SL动力板-Sport", value: 25, color: "#22C55E", series: "SL系列"},
+            {name: "SL动力板-Master", value: 20, color: "#2ecc71", series: "SL系列"},
+            {name: "JS动力板-Titanium", value: 15, color: "#2563EB", series: "JS系列"},
+            {name: "JS动力板-Race 2", value: 12, color: "#2563EB", series: "JS系列"},
+            {name: "IR动力板-Long", value: 8, color: "#5dade2", series: "IR系列"},
+            {name: "IR动力板-EX", value: 7, color: "#85c1e9", series: "IR系列"},
+            {name: "JS动力板-Electric", value: 3, color: "#1abc9c", series: "JS系列"}
+        ];
+
+        // 使用D3.js创建Tree Map
+        const treemapContainer = document.getElementById('treemap');
+        const containerWidth = treemapContainer.clientWidth || 600;
+        const containerHeight = treemapContainer.clientHeight || 400;
+
+        const svg = d3.select("#treemap")
+            .append("svg")
+            .attr("width", containerWidth)
+            .attr("height", containerHeight)
+            .style("border-radius", "8px");
+
+        const treemap = d3.treemap()
+            .size([containerWidth, containerHeight])
+            .padding(3)
+            .round(true);
+
+        const root = d3.hierarchy({children: treemapData})
+            .sum(d => d.value)
+            .sort((a, b) => b.value - a.value);
+
+        treemap(root);
+
+        // 创建渐变定义
+        const defs = svg.append("defs");
+        treemapData.forEach((d, i) => {
+            const gradient = defs.append("linearGradient")
+                .attr("id", `gradient-${i}`)
+                .attr("x1", "0%").attr("y1", "0%")
+                .attr("x2", "100%").attr("y2", "100%");
+            
+            gradient.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", d.color)
+                .attr("stop-opacity", 0.8);
+            
+            gradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", d3.rgb(d.color).darker(0.5))
+                .attr("stop-opacity", 0.9);
+        });
+
+        // 创建矩形
+        const leaf = svg.selectAll("g")
+            .data(root.leaves())
+            .enter().append("g")
+            .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+        leaf.append("rect")
+            .attr("width", d => d.x1 - d.x0)
+            .attr("height", d => d.y1 - d.y0)
+            .attr("fill", (d, i) => `url(#gradient-${i})`)
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 2)
+            .attr("rx", 4)
+            .attr("ry", 4)
+            .style("cursor", "pointer")
+            .on("mouseover", function(event, d) {
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .attr("stroke-width", 3)
+                    .attr("stroke", "#374151");
+                
+                // 显示工具提示
+                const tooltip = d3.select("body").append("div")
+                    .attr("class", "treemap-tooltip")
+                    .style("position", "absolute")
+                    .style("background", "rgba(44, 62, 80, 0.95)")
+                    .style("color", "white")
+                    .style("padding", "8px 12px")
+                    .style("border-radius", "6px")
+                    .style("font-size", "12px")
+                    .style("pointer-events", "none")
+                    .style("z-index", "1000")
+                    .style("box-shadow", "0 4px 8px rgba(0,0,0,0.3)")
+                    .html(`
+                        <strong>${d.data.name}</strong><br/>
+                        收入占比: ${d.data.value}%<br/>
+                        产品系列: ${d.data.series}
+                    `)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 10) + "px")
+                    .style("opacity", 0);
+                
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "#ffffff");
+                
+                d3.selectAll(".treemap-tooltip").remove();
+            });
+
+        // 添加产品名称文本
+        leaf.append("text")
+            .attr("x", d => (d.x1 - d.x0) / 2)
+            .attr("y", d => (d.y1 - d.y0) / 2 - 8)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", d => {
+                const area = (d.x1 - d.x0) * (d.y1 - d.y0);
+                if (area > 8000) return "12px";
+                if (area > 4000) return "10px";
+                if (area > 2000) return "9px";
+                return "8px";
+            })
+            .style("font-weight", "600")
+            .style("fill", "#ffffff")
+            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.7)")
+            .style("pointer-events", "none")
+            .text(d => {
+                const width = d.x1 - d.x0;
+                if (width < 80) return d.data.name.split('-')[1] || d.data.name;
+                return d.data.name;
+            });
+
+        // 添加收入占比文本
+        leaf.append("text")
+            .attr("x", d => (d.x1 - d.x0) / 2)
+            .attr("y", d => (d.y1 - d.y0) / 2 + 8)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", d => {
+                const area = (d.x1 - d.x0) * (d.y1 - d.y0);
+                if (area > 4000) return "11px";
+                if (area > 2000) return "10px";
+                return "9px";
+            })
+            .style("font-weight", "500")
+            .style("fill", "#ffffff")
+            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.7)")
+            .style("pointer-events", "none")
+            .text(d => `${d.data.value}%`);
+
+        // 添加图例
+        const legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("transform", `translate(10, 10)`);
+
+        const series = [...new Set(treemapData.map(d => d.series))];
+        const seriesColors = {
+            "JS系列": "#3B82F6",
+            "SL系列": "#22C55E", 
+            "IR系列": "#2563EB"
+        };
+
+        series.forEach((serie, i) => {
+            const legendItem = legend.append("g")
+                .attr("transform", `translate(0, ${i * 20})`);
+            
+            legendItem.append("rect")
+                .attr("width", 12)
+                .attr("height", 12)
+                .attr("fill", seriesColors[serie])
+                .attr("rx", 2);
+            
+            legendItem.append("text")
+                .attr("x", 16)
+                .attr("y", 6)
+                .attr("dy", "0.35em")
+                .style("font-size", "11px")
+                .style("font-weight", "500")
+                .style("fill", "#374151")
+                .text(serie);
+        });
+    </script>
+</body>
+</html>
